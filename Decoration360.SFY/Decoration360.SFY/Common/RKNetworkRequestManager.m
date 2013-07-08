@@ -422,6 +422,7 @@ static RKNetworkRequestManager *_networkRequestManager;
     return self;
 }
 
+/*
 #pragma mark - download Request
 -(void)downloadThemeWithPicUrl:(NSString *)url1 iconUrl_1:(NSString *)url2 iconUrl_2:(NSString *)url3 iconUrl_3:(NSString *)url4 andVoiceUrl:(NSString *)url5 Num:(int)commentNum {
     self.picUrl =[NSURL URLWithString:url1];
@@ -518,7 +519,7 @@ static RKNetworkRequestManager *_networkRequestManager;
     self.icon_3 =[UIImage imageWithData:data];
     [downloadThemePicDelegate downloadThemePicData:_pic iocn_1:_icon_1 iocn_2:_icon_2 iocn_3:_icon_3 :_commentNum];
 }
-
+*/
 
 #pragma mark - initRequest
 - (ASIFormDataRequest *)initRequestWithfile:(NSString *)filePath fileName:(NSString *)name ContentType:(NSString *)Type Key:(NSString *)Key Url:(NSString *)UrlStr {

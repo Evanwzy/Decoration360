@@ -11,6 +11,7 @@
 #import "RKHomeViewController.h"
 #import "Common.h"
 #import "RKCommitTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface RKPhotoTalkingViewController ()
 
@@ -85,6 +86,7 @@
     [[RKNetworkRequestManager sharedManager] getThemeInfoFrom:@"0" To:[NSString stringWithFormat:@"%d", _requestNum]];
 }
 
+/*
 - (void)setup :(int)i {
     
     NSDictionary *commitDict =[_commitArray objectAtIndex:i];
@@ -116,8 +118,9 @@
     manager.downloadThemePicDelegate =self;
     [manager downloadThemeWithPicUrl:themeImgUrl iconUrl_1:commitIcon_1 iconUrl_2:commitIcon_2 iconUrl_3:commitIcon_3 andVoiceUrl:themeVoiceUrl Num:_commentNum];
 }
+*/
 
-
+/*
 - (void)setupCommitView :(int)num {
     NSDictionary *commitDict_1 =[_commitArray objectAtIndex:_countNum];
     NSArray *commentArray =[commitDict_1 objectForKey:@"comments"];
@@ -179,13 +182,15 @@
     [_array addObject:commitDict];
     if ([_array count]==[_commitArray count]) {
 //        [self setupUI:_array];
-        [self doneLoadingTableViewData];
+        
         [_tableView reloadData];
     } else {
+        
         _countNum ++;
         [self setup:_countNum];
     }
 }
+*/
 
 //- (void)setupUI:(NSMutableArray *)arr {
 //    //    [_aoView addSubview:_imgView];
@@ -240,6 +245,7 @@
     if (_commitArray !=nil) {
         return 1;
     }else {
+        [_tableView setHidden:YES];
         return 0;
     }
 }
@@ -285,9 +291,8 @@
         return cell;
     }else {
         NSDictionary *commitDict =[_commitArray objectAtIndex:indexPath.row];
-        NSDictionary *commitDict_2 =[_array objectAtIndex:indexPath.row];
-        
-        cell.themeImageView.image =[commitDict_2 objectForKey:@"pic"];
+        NSArray *commentArray =[commitDict objectForKey:@"comments"];
+        [cell.themeImageView setImageWithURL:[NSURL URLWithString:[commitDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
         cell.voiceURL =[commitDict objectForKey:@"voice_url"];
         cell.tid =[commitDict objectForKey:@"id"];
         int num =[[commitDict objectForKey:@"num"]intValue];
@@ -304,53 +309,57 @@
         cell.moreBtn.frame =CGRectMake(0.0f, 263.0f, 320.0f, 20.0f);
         
         if (num >0) {
-            cell.commit_icon_1.image =[commitDict_2 objectForKey:@"icon_1"];
+            NSDictionary *commentDict =[commentArray objectAtIndex:0];
+            [cell.commit_icon_1 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
             cell.moreBtn.frame =CGRectMake(0.0f, 326.0f, 320.0f, 20.0f);
-            NSString *btnHidden_1 =[commitDict_2 objectForKey:@"btnHidden_1"];
-            if ([btnHidden_1 isEqualToString:@"y"]) {
+            NSString *contentText =[commentDict objectForKey:@"content"];
+            NSString *contentID =[commentDict objectForKey:@"uid"];
+            if (contentText.length !=0) {
                 [cell.commit_icon_1 setHidden:NO];
                 [cell.commit_content_1 setHidden:NO];
-                cell.commit_content_1.text =[commitDict_2 objectForKey:@"commitContent_1"];
+                cell.commit_content_1.text =[NSString stringWithFormat:@"%@: %@", contentID, contentText];
             }else {
                 [cell.commit_icon_1 setHidden:NO];
                 [cell.commit_content_1 setHidden:NO];
-                cell.commit_content_1.text =[commitDict_2 objectForKey:@"commitContent_1"];
                 [cell.commentPlayBtn_1 setHidden:NO];
+                cell.commit_content_1.text =[NSString stringWithFormat:@"%@: ", contentID];
             }
         }
         if (num >1) {
-            cell.commit_icon_2.image =[commitDict_2 objectForKey:@"icon_2"];
+            NSDictionary *commentDict =[commentArray objectAtIndex:1];
+            [cell.commit_icon_2 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
             cell.moreBtn.frame =CGRectMake(0.0f, 405.0f, 320.0f, 20.0f);
-            NSString *btnHidden_2 =[commitDict_2 objectForKey:@"btnHidden_2"];
-            if ([btnHidden_2 isEqualToString:@"y"]) {
+            NSString *contentText =[commentDict objectForKey:@"content"];
+            NSString *contentID =[commentDict objectForKey:@"uid"];
+            if (contentText.length !=0) {
                 [cell.commit_icon_2 setHidden:NO];
                 [cell.commit_content_2 setHidden:NO];
-                cell.commit_content_2.text =[commitDict_2 objectForKey:@"commitContent_2"];
+                cell.commit_content_2.text =[NSString stringWithFormat:@"%@: %@", contentID, contentText];
             }else {
                 [cell.commit_icon_2 setHidden:NO];
                 [cell.commit_content_2 setHidden:NO];
-                cell.commit_content_2.text =[commitDict_2 objectForKey:@"commitContent_2"];
                 [cell.commentPlayBtn_2 setHidden:NO];
+                cell.commit_content_2.text =[NSString stringWithFormat:@"%@: ", contentID];
             }
         }
         if (num >2){
-            cell.commit_icon_3.image =[commitDict_2 objectForKey:@"icon_3"];
+            NSDictionary *commentDict =[commentArray objectAtIndex:2];
+            [cell.commit_icon_3 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
             cell.moreBtn.frame =CGRectMake(0.0f, 482.0f, 320.0f, 20.0f);
-            NSString *btnHidden_3 =[commitDict_2 objectForKey:@"btnHidden_3"];
-            if ([btnHidden_3 isEqualToString:@"y"]) {
+            NSString *contentText =[commentDict objectForKey:@"content"];
+            NSString *contentID =[commentDict objectForKey:@"uid"];
+            if (contentText.length !=0) {
                 [cell.commit_icon_3 setHidden:NO];
                 [cell.commit_content_3 setHidden:NO];
-                cell.commit_content_3.text =[commitDict_2 objectForKey:@"commitContent_3"];
+                cell.commit_content_3.text =[NSString stringWithFormat:@"%@: %@", contentID, contentText];
             }else {
                 [cell.commit_icon_3 setHidden:NO];
                 [cell.commit_content_3 setHidden:NO];
-                cell.commit_content_3.text =[commitDict_2 objectForKey:@"commitContent_3"];
                 [cell.commentPlayBtn_3 setHidden:NO];
+                cell.commit_content_3.text =[NSString stringWithFormat:@"%@: ", contentID];
             }
             
         }
-        
-        
         // Configure the cell.
         return cell;
     }
@@ -446,39 +455,40 @@
 #pragma mark - requestQueryData
 
 -(void)themeInfoData:(NSDictionary *)a {
-    _countNum=0;
     self.commitArray =[[NSArray alloc]initWithArray:[a objectForKey:@"data"]];
 //    NSLog(@"commit_array:%@", _commitArray);
-    [_array removeAllObjects];
-    [self setup:_countNum];
+//    [self setup:_countNum];
+    [_tableView setHidden:NO];
+    [_tableView reloadData];
+    [self doneLoadingTableViewData];
 }
 
--(void)downloadThemePicData:(UIImage *)pic :(int)num {
-    self.pic =pic;
-    [self setupCommitView:num];
-    
-}
-
--(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 :(int)num {
-    self.pic =pic;
-    self.icon_1 =icon_1;
-    [self setupCommitView:num];
-}
-
--(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 :(int)num {
-    self.pic =pic;
-    self.icon_1 =icon_1;
-    self.icon_2 =icon_2;
-    [self setupCommitView:num];
-}
-
--(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 iocn_3:(UIImage *)icon_3 :(int)num {
-    self.pic =pic;
-    self.icon_1 =icon_1;
-    self.icon_2 =icon_2;
-    self.icon_3 =icon_3;
-    [self setupCommitView:num];
-}
+//-(void)downloadThemePicData:(UIImage *)pic :(int)num {
+//    self.pic =pic;
+//    [self setupCommitView:num];
+//    
+//}
+//
+//-(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 :(int)num {
+//    self.pic =pic;
+//    self.icon_1 =icon_1;
+//    [self setupCommitView:num];
+//}
+//
+//-(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 :(int)num {
+//    self.pic =pic;
+//    self.icon_1 =icon_1;
+//    self.icon_2 =icon_2;
+//    [self setupCommitView:num];
+//}
+//
+//-(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 iocn_3:(UIImage *)icon_3 :(int)num {
+//    self.pic =pic;
+//    self.icon_1 =icon_1;
+//    self.icon_2 =icon_2;
+//    self.icon_3 =icon_3;
+//    [self setupCommitView:num];
+//}
 
 
 

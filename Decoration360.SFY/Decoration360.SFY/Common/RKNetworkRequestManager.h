@@ -178,10 +178,10 @@
 
 
 @protocol RKRequestManagerDownloadThemePicDelegate <NSObject>
-
+/*
 - (void)downloadThemePicData:(UIImage *)pic :(int)num;
 - (void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 :(int)num;
 - (void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 :(int)num;
 - (void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 iocn_3:(UIImage *)icon_3 :(int)num;
-
+*/
 @end
