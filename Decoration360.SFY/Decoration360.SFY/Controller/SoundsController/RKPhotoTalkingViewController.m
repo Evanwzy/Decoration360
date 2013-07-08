@@ -35,6 +35,8 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNum) name:@"ADDREQUESTNUM" object:nil];
     
+    [_tableView setHidden:YES];
+    
     // Do any additional setup after loading the view from its nib.
     
 //    _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0.0f, 44.0f, 320.0f, 460.0f)];
@@ -242,20 +244,11 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (_commitArray !=nil) {
-        return 1;
-    }else {
-        [_tableView setHidden:YES];
-        return 0;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_commitArray !=nil) {
         return [_commitArray count]+1;
-    }else {
-        return 0;
-    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -310,7 +303,7 @@
         
         if (num >0) {
             NSDictionary *commentDict =[commentArray objectAtIndex:0];
-            [cell.commit_icon_1 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
+            [cell.commit_icon_1 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];     
             cell.moreBtn.frame =CGRectMake(0.0f, 326.0f, 320.0f, 20.0f);
             NSString *contentText =[commentDict objectForKey:@"content"];
             NSString *contentID =[commentDict objectForKey:@"uid"];
@@ -378,10 +371,14 @@
 //        return 284.0f;
 //    }
     int indexNum =[_commitArray count];
-    if (indexPath.row == indexNum) {
-        return 24.0f;
+    if (indexNum ==0) {
+        return 460.0f;
     }else {
-        return 502.0f;
+        if (indexPath.row == indexNum) {
+            return 24.0f;
+        }else {
+            return 502.0f;
+        }
     }
 }
 

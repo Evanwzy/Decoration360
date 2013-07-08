@@ -33,13 +33,13 @@
     [super viewDidLoad];
     
     [Common checkUserDefault];
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target: self selector: @selector(handleTimer:)  userInfo:nil  repeats: YES];
     
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [Common cancelAllRequestOfAllQueue];
-    
     RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
     manager.homeDelegate =self;
     [self requestQueryData];
@@ -69,12 +69,14 @@
         page =[[UIPageControl alloc]init];
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target: self selector: @selector(handleTimer:)  userInfo:nil  repeats: YES];
     Arr=[[NSArray alloc]initWithArray:imageArray];
     titleArr =[[NSArray alloc]initWithArray:titleArray];
+    
+    for (UIView * subview in [sv subviews]) {
+        [subview removeFromSuperview];
+    }
     [self AdImg:Arr];
     [self setCurrentPage:page.currentPage];
-    
     [self setUI];
 }
 
