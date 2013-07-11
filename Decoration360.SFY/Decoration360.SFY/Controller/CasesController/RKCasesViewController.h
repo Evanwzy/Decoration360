@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NIDropDown.h"
 
-@interface RKCasesViewController : UIViewController <NIDropDownDelegate, UIScrollViewDelegate> {
-    IBOutlet UIButton *btnSelect;
-    IBOutlet UIButton *siteBtnClicked;
-    NIDropDown *dropDwon;
+@interface RKCasesViewController : UIViewController <UIScrollViewDelegate> {
     
     UIScrollView              *x_scrollView;
     UIPageControl             *x_pageControl;
@@ -27,14 +24,9 @@
 @property (nonatomic,retain)UITextView            *x_cityRepresent;
 @property (nonatomic,retain)NSMutableArray        *x_textArray;
 
-@property (retain, nonatomic) IBOutlet UIButton *styleBtn;
-@property (retain, nonatomic) IBOutlet UIButton *siteBtn;
-@property (retain, nonatomic) IBOutlet UIButton *btnSelect;
-@property (retain, nonatomic) IBOutlet UIButton *siteBtnClicked;
-
-
-- (IBAction)siteBtnClicked:(id)sender;
-- (IBAction)selectClicked:(id)sender;
+@property (nonatomic, retain)NSString *type;
+@property int num;
+@property (nonatomic, retain)NSArray *arr;
 
 - (IBAction)backBtn:(id)sender;
 

@@ -10,6 +10,8 @@
 #import "RKPhotoTalkingViewController.h"
 #import "RKLoginViewController.h"
 #import "RKCaseListViewController.h"
+#import "RKCasesViewController.h"
+#import "RKCompanyViewController.h"
 #import "Common.h"
 #import "UIButton+WebCache.h"
 
@@ -134,16 +136,16 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 }
 
 -(void)AdImg:(NSArray*)arr{
-    [sv setContentSize:CGSizeMake(320*[arr count], 80)];
+    [sv setContentSize:CGSizeMake(320*[arr count], 128)];
     page.numberOfPages=[arr count];
     
     for ( int i=0; i<[arr count]; i++) {
         NSString *url=[arr objectAtIndex:i];
-        UIButton *img=[[UIButton alloc]initWithFrame:CGRectMake(320*i, 0, 320, 80)];
+        UIButton *img=[[UIButton alloc]initWithFrame:CGRectMake(320*i, 0, 320, 128)];
         [img addTarget:self action:@selector(Action) forControlEvents:UIControlEventTouchUpInside];
         [img setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
         
-        UILabel *adLabel =[[UILabel alloc]initWithFrame:CGRectMake(320*i, 60, 320, 20)];
+        UILabel *adLabel =[[UILabel alloc]initWithFrame:CGRectMake(320*i, 108, 320, 20)];
         adLabel.text =[titleArr objectAtIndex:i];
         adLabel.alpha =0.4;
         adLabel.backgroundColor =[UIColor blackColor];
@@ -191,9 +193,21 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 
 #pragma mark - UI
 - (void)setUI {
+    
+    
+    [_takingBtn setImage:[UIImage imageNamed:@"icon_takingphoto.png"] forState:UIControlStateNormal];
+    [_otherBtn setImage:[UIImage imageNamed:@"icon_more.png"] forState:UIControlStateNormal];
+    
+    if (! IS_IPHONE_5) {
+        self.bgImageView.image =[UIImage imageNamed:@"home_bg.png"];
+    }else {
+        self.bgImageView.image =[UIImage imageNamed:@"home_bg_568.png"];
+    }
+    
     [self.view bringSubviewToFront:_takingBtn];
     [self.view bringSubviewToFront:_otherBtn];
     [self.view bringSubviewToFront:_caseBtn];
+    [self.view bringSubviewToFront:_companyBtn];
 }
 
 - (IBAction)casesBtnPressed:(id)sender {
@@ -216,12 +230,19 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 }
 
 - (IBAction)activityBtnPressed:(id)sender {
+    RKCasesViewController *cvCtr =[[RKCasesViewController alloc]init];
+    cvCtr.type =@"companyInfo";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:cvCtr];
+    [cvCtr release];
 }
 
 - (IBAction)designerBtnPressed:(id)sender {
 }
 
 - (IBAction)companyInfoBtnPressed:(id)sender {
+    RKCompanyViewController *cvCtr =[[RKCompanyViewController alloc]init];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:cvCtr];
+    [cvCtr release];
 }
 
 
@@ -236,6 +257,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [_takingBtn release];
     [_otherBtn release];
     [_caseBtn release];
+    [_companyBtn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -244,6 +266,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [self setTakingBtn:nil];
     [self setOtherBtn:nil];
     [self setCaseBtn:nil];
+    [self setCompanyBtn:nil];
     [super viewDidUnload];
 }
 @end

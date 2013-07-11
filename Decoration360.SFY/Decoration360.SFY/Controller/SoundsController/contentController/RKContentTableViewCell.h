@@ -10,4 +10,8 @@
 
 @interface RKContentTableViewCell : UITableViewCell
 
+@property (retain, nonatomic) IBOutlet UIButton *playBtn;
+@property (retain, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (retain, nonatomic) IBOutlet UITextView *contentText;
+
 @end

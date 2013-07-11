@@ -18,7 +18,7 @@
 
 @synthesize queue;
 @synthesize singleQueue;
-@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate;
+@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate;
 #pragma - singleton
 
 static RKNetworkRequestManager *_networkRequestManager;
@@ -190,9 +190,49 @@ static RKNetworkRequestManager *_networkRequestManager;
     [request addPostValue:site forKey:@"type"];
     if ([style isEqualToString:@"全部风格"]) {
         [request addPostValue:@"0" forKey:@"style"];
+    }else if ([style isEqualToString:@"简约"]) {
+        [request addPostValue:@"1" forKey:@"style"];
+    }else if ([style isEqualToString:@"中式"]) {
+        [request addPostValue:@"2" forKey:@"style"];
+    }else if ([style isEqualToString:@"欧美"]) {
+        [request addPostValue:@"3" forKey:@"style"];
+    }else if ([style isEqualToString:@"地中海"]) {
+        [request addPostValue:@"4" forKey:@"style"];
+    }else if ([style isEqualToString:@"异域"]) {
+        [request addPostValue:@"5" forKey:@"style"];
+    }else if ([style isEqualToString:@"混搭"]) {
+        [request addPostValue:@"6" forKey:@"style"];
     }
     if ([site isEqualToString:@"全部功能"]) {
         [request addPostValue:@"0" forKey:@"type"];
+    }else if ([site isEqualToString:@"厨房"]) {
+        [request addPostValue:@"1" forKey:@"type"];
+    }else if ([site isEqualToString:@"卫浴"]) {
+        [request addPostValue:@"2" forKey:@"type"];
+    }else if ([site isEqualToString:@"客厅"]) {
+        [request addPostValue:@"3" forKey:@"type"];
+    }else if ([site isEqualToString:@"卧室"]) {
+        [request addPostValue:@"4" forKey:@"type"];
+    }else if ([site isEqualToString:@"餐厅"]) {
+        [request addPostValue:@"5" forKey:@"type"];
+    }else if ([site isEqualToString:@"儿童房"]) {
+        [request addPostValue:@"6" forKey:@"type"];
+    }else if ([site isEqualToString:@"书房"]) {
+        [request addPostValue:@"7" forKey:@"type"];
+    }else if ([site isEqualToString:@"整体衣帽间"]) {
+        [request addPostValue:@"8" forKey:@"type"];
+    }else if ([site isEqualToString:@"玄关"]) {
+        [request addPostValue:@"9" forKey:@"type"];
+    }else if ([site isEqualToString:@"阳台阳光房"]) {
+        [request addPostValue:@"10" forKey:@"type"];
+    }else if ([site isEqualToString:@"楼梯"]) {
+        [request addPostValue:@"11" forKey:@"type"];
+    }else if ([site isEqualToString:@"储藏室"]) {
+        [request addPostValue:@"12" forKey:@"type"];
+    }else if ([site isEqualToString:@"其他空间"]) {
+        [request addPostValue:@"13" forKey:@"type"];
+    }else if ([site isEqualToString:@"户外庭院"]) {
+        [request addPostValue:@"14" forKey:@"type"];
     }
     
     [request setDelegate:self];
@@ -209,10 +249,9 @@ static RKNetworkRequestManager *_networkRequestManager;
         NSLog(@"%@", data);
         if ([[data valueForKey:@"status"] isEqualToString:@"0"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
-            //            NSLog(@"%@", data);
-                NSLog(@"%@", [data objectForKey:@"num"]);
-            
-            [caseListDelegate caseListQueryData:[data objectForKey:@"data"]];
+//            NSLog(@"%@", data);
+            NSLog(@"%@", [data objectForKey:@"num"]);
+            [caseListDelegate caseListQueryData:data];
         }if ([[data valueForKey:@"status"] isEqualToString:@"1001"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
         }
@@ -317,6 +356,37 @@ static RKNetworkRequestManager *_networkRequestManager;
         NSDictionary *data = [[Common operaterStr:[request responseString]] JSONValue];
         if ([[data valueForKey:@"status"] isEqualToString:@"0"]) {
 //            NSLog(@"%@", data);
+            [contentDelegate contentInfoData:[data objectForKey:@"data"]];
+        }if ([[data valueForKey:@"status"] isEqualToString:@"1001"]) {
+            NSLog(@"%@", [data valueForKey:@"msg"]);
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"[%@]%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd), exception);
+    }
+}
+
+- (void)getCompanyInfo {
+    [self checkQueue];
+    [Common cancelAllRequestWithQueue:queue];
+    NSURL *url = [NSURL URLWithString:GetCompanyInfo];
+    ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(getCompanyInfoDone:)];
+    [request setDidFailSelector:@selector(getContentInfoFailed:)];
+    request.timeOutSeconds = 10;
+    //    [request startAsynchronous];
+    [queue addOperation:request];
+}
+
+- (void)getCompanyInfoDone:(ASIHTTPRequest *)request {
+    @try {
+        //        NSLog(@"%@", [Common operaterStr:[request responseString]]);
+        NSDictionary *data = [[Common operaterStr:[request responseString]] JSONValue];
+        if ([[data valueForKey:@"status"] isEqualToString:@"0"]) {
+            NSLog(@"%@", data);
         }if ([[data valueForKey:@"status"] isEqualToString:@"1001"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
         }

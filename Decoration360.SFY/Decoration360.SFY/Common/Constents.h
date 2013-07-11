@@ -11,6 +11,7 @@
 #define LOGIN_STATUS @"isLogined"
 #define SN_KEY @"SN_KEY"
 
+
 #pragma mark - SERVER_Adrr
 
 //test URL
@@ -31,5 +32,6 @@
 #define GetThemeUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiTopic/index", SERVER_URL]
 #define GetThemeDetailUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiTopic/detailed", SERVER_URL]
 #define GetCaseInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCase/index", SERVER_URL]
+#define GetCompanyInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCompany/index", SERVER_URL]
 
 

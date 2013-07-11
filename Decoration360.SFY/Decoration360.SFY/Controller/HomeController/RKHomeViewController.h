@@ -25,6 +25,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bottomImageView;
 @property (retain, nonatomic) IBOutlet UIButton *otherBtn;
+@property (retain, nonatomic) IBOutlet UIButton *companyBtn;
 
 
 

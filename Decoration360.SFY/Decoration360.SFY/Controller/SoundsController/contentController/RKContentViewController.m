@@ -7,8 +7,10 @@
 //
 
 #import "RKContentViewController.h"
+#import "RKContentTableViewCell.h"
 #import "RKPhotoTalkingViewController.h"
 #import "Common.h"
+#import "UIImageView+WebCache.h"
 
 @interface RKContentViewController ()
 
@@ -29,7 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.picImgView.image =_picImage;
+//    self.picImgView.image =_picImage;
     [_commitTextField setHidden:YES];
     [_sendBtn setHidden:YES];
     
@@ -38,19 +40,22 @@
     [_commitVoiceBtn addTarget:self action:@selector(btnDown:) forControlEvents:UIControlEventTouchDown];
     [_commitVoiceBtn addTarget:self action:@selector(btnUp:) forControlEvents:UIControlEventTouchUpInside];
     [_commitVoiceBtn addTarget:self action:@selector(btnDragUp:) forControlEvents:UIControlEventTouchDragExit];
-    [self requestDataQuery];
+    
 }
 
 
 
 -(void)viewWillAppear:(BOOL)animated {
+    [_tableView setHidden:YES];
     [Common cancelAllRequestOfAllQueue];
     [super viewWillAppear:animated];
 	keyBoardController=[[UIKeyboardViewController alloc] initWithControllerDelegate:self];
 	[keyBoardController addToolbarToKeyboard];
+    [self requestDataQuery];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+    
 	[super viewWillDisappear:animated];
 	[keyBoardController release];
 }
@@ -67,6 +72,7 @@
     [_commitVoiceBtn release];
     [_commitTextField release];
     [_sendBtn release];
+    [_tableView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -74,6 +80,7 @@
     [self setCommitVoiceBtn:nil];
     [self setCommitTextField:nil];
     [self setSendBtn:nil];
+    [self setTableView:nil];
     [super viewDidUnload];
 }
 
@@ -253,10 +260,92 @@
 #pragma mark - networkRequest
 - (void)requestDataQuery {
     RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
+    manager.contentDelegate =self;
     [manager getContentInfo:_tid :@"0" :@"10"];
+}
+
+-(void)contentInfoData:(NSDictionary *)dict {
+    self.dictData =[dict objectForKey:@"topic"];
+    self.commentArray =[dict objectForKey:@"comments"];
+    [_tableView setHidden:NO];
+    [_tableView reloadData];
+}
+
+#pragma mark - tableViewDelegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[_dictData objectForKey:@"num"] intValue]+2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    RKContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell ==nil) {
+        NSArray *xib=[[NSBundle mainBundle] loadNibNamed:@"RKContentTableViewCell" owner:self options:nil];
+        cell =(RKContentTableViewCell *)[xib objectAtIndex:0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    [cell setHighlighted:NO];
+    if (indexPath.row ==0) {
+        [cell.contentText setHidden:YES];
+        [cell.iconImageView setHidden:YES];
+        
+        UIImageView *imageView =[[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 281.1f)];
+        imageView.image =_picImage;
+        
+        UIButton *playBtn =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [playBtn setFrame:CGRectMake(124.0f, 266.1f, 72.0f, 30.0f)];
+        [playBtn addTarget:self action:@selector(themePlayBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [playBtn setTitle:@"播放" forState:UIControlStateNormal];
+        [cell addSubview:imageView];
+        [cell addSubview:playBtn];
+        [cell.playBtn setHidden:YES];
+        return cell;
+    }else if ( indexPath.row == [[_dictData objectForKey:@"num"] intValue]+1){
+        [cell.contentText setHidden:YES];
+        [cell.playBtn setHidden:YES];
+        [cell.iconImageView setHidden:YES];
+        
+        UIButton *playBtn =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [playBtn setFrame:CGRectMake(0.0f, 0.0f, 320.0f, 30.0f)];
+        [playBtn setTitle:@"加载更多" forState:UIControlStateNormal];
+        [cell addSubview:playBtn];
+        return cell;
+    }else {
+        cell.contentText.editable =NO;
+        NSDictionary *commentDict =[_commentArray objectAtIndex:indexPath.row-1];
+        NSString *content =[commentDict objectForKey:@"content"];
+        if (content.length !=0) {
+            [cell.playBtn setHidden:YES];
+            cell.contentText.text =[NSString stringWithFormat:@"%@: %@", [commentDict objectForKey:@"uid"], [commentDict objectForKey:@"content"]];
+            [cell.iconImageView setImageWithURL:[commentDict objectForKey:@"pic_url"] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
+        }else {
+            cell.contentText.text =[NSString stringWithFormat:@"%@: ", [commentDict objectForKey:@"uid"]];
+            [cell.iconImageView setImageWithURL:[commentDict objectForKey:@"pic_url"] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
+        }
+        
+        return cell;
+    }
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row ==0) {
+        return 350.0f;
+    }else if ( indexPath.row == [[_dictData objectForKey:@"num"] intValue]+1){
+        return 32.0f;
+    }else {
+        return 72.0f;
+    }
+}
 
+
+#pragma mark -cellAction
+- (void)themePlayBtnPressed {
+    
+}
 
 @end

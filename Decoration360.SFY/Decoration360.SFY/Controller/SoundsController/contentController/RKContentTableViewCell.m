@@ -26,4 +26,10 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc {
+    [_playBtn release];
+    [_iconImageView release];
+    [_contentText release];
+    [super dealloc];
+}
 @end

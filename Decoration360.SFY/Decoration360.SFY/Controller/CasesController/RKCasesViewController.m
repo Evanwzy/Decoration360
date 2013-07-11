@@ -7,6 +7,8 @@
 //
 
 #import "RKCasesViewController.h"
+#import "RKNetworkRequestManager.h"
+#import "UIImageView+WebCache.h"
 
 @implementation RKCasesViewController
 
@@ -37,8 +39,12 @@
     self.x_photoArray =tmpArray;
     self.x_textArray =tmpArray;
     
-    self.x_photoArray =[NSMutableArray arrayWithObjects:@"111.jpg",@"111.jpg",@"111.jpg",nil];
-    self.x_textArray =[NSMutableArray arrayWithObjects:@"111",@"222",@"333", nil];
+    x_photoArray =[[NSMutableArray alloc]init];
+    x_textArray =[[NSMutableArray alloc]init];
+    for (int i =0; i <[_arr count]; i++) {
+        [x_photoArray addObject:[[_arr objectAtIndex:i] objectForKey:@"url"]];
+        [x_textArray addObject:[[_arr objectAtIndex:i] objectForKey:@"info"]];
+    }
     
     // 配置scrollView
     [self initScrollView];
@@ -48,7 +54,10 @@
 
 #pragma mark - requestDataQuery
 - (void)requestDataQuery {
-    
+    if ([_type isEqualToString:@"companyInfo"]) {
+        RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
+        [manager getCompanyInfo];
+    }
 }
 
 #pragma mark defined Method
@@ -67,12 +76,13 @@
     for (int i = 0; i < [self.x_photoArray count];i++ )
     {
         UIImageView *x_imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * 320,0,320,320)];
-        x_imageView.image =[UIImage imageNamed:[self.x_photoArray objectAtIndex:i]];
+        [x_imageView setImageWithURL:[self.x_photoArray objectAtIndex:i] placeholderImage:[UIImage imageNamed:@"111.png"]];
         x_imageView.backgroundColor = [UIColor clearColor];
         [self.x_scrollView addSubview:x_imageView];
         [x_imageView release];
     }
     self.x_scrollView.contentSize = CGSizeMake(320*[self.x_photoArray count],180);
+    [self.x_scrollView setContentOffset:CGPointMake(320*_num, 0)];
     [self.view addSubview:self.x_scrollView];
     [x_scrollView release];
     //配置pageControl
@@ -80,7 +90,7 @@
     self.x_pageControl = tmpPageCtr;
     [tmpPageCtr release];
     x_pageControl.numberOfPages = [x_photoArray count];
-    x_pageControl.currentPage = 0;
+    x_pageControl.currentPage = _num;
     x_pageControl.userInteractionEnabled = YES;
     x_pageControl.alpha = 1.0;
     [self.view addSubview:x_pageControl];
@@ -132,60 +142,14 @@
 
 
 - (void)dealloc {
-    [_styleBtn release];
-    [_siteBtn release];
-    [_btnSelect release];
-    [_siteBtnClicked release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setStyleBtn:nil];
-    [self setSiteBtn:nil];
-    [self setBtnSelect:nil];
-    [self setSiteBtnClicked:nil];
     [super viewDidUnload];
-}
-
-- (IBAction)siteBtnClicked:(id)sender {
-    NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Hello 0", @"Hello 1", @"Hello 2", @"Hello 3", @"Hello 4", @"Hello 5", @"Hello 6", @"Hello 7", @"Hello 8", @"Hello 9",nil];
-    if(dropDwon == nil) {
-        CGFloat f = 200;
-        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
-        dropDwon.delegate = self;
-    }
-    else {
-        [dropDwon hideDropDown:sender];
-        [self rel];
-    }
-}
-
-- (IBAction)selectClicked:(id)sender {
-    NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Hello 0", @"Hello 1", @"Hello 2", @"Hello 3", @"Hello 4", @"Hello 5", @"Hello 6", @"Hello 7", @"Hello 8", @"Hello 9",nil];
-    if(dropDwon == nil) {
-        CGFloat f = 200;
-        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
-        dropDwon.delegate = self;
-    }
-    else {
-        [dropDwon hideDropDown:sender];
-        [self rel];
-    }
 }
 
 - (IBAction)backBtn:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"POPCONTROLLER" object:nil];
 }
 
-- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
-    NSLog(@"%@", _btnSelect.titleLabel.text);
-    NSLog(@"%@", _siteBtn.titleLabel.text);
-    [self rel];
-}
-
--(void)rel{
-    [dropDwon release];
-    dropDwon = nil;
-}
 @end

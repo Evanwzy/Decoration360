@@ -12,7 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface RKContentViewController : UIViewController<UIKeyboardViewControllerDelegate, AVAudioRecorderDelegate> {
+@interface RKContentViewController : UIViewController<UIKeyboardViewControllerDelegate, AVAudioRecorderDelegate, RKRequestManagerContentDelegate, UITableViewDataSource, UITableViewDelegate> {
     UIKeyboardViewController *keyBoardController;
     AVAudioRecorder *recorder;
     NSTimer *timer;
@@ -25,8 +25,9 @@
 @property (retain, nonatomic) AVAudioPlayer *avPlay;
 @property (retain, nonatomic) NSString *mp3File;
 
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIImageView *recordView;
-@property (retain, nonatomic) IBOutlet UIImageView *picImgView;
+@property (retain, nonatomic) UIImageView *picImgView;
 @property (retain, nonatomic) IBOutlet UIButton *commitVoiceBtn;
 @property (retain, nonatomic) IBOutlet UITextField *commitTextField;
 @property (retain, nonatomic) IBOutlet UIButton *sendBtn;
@@ -34,5 +35,8 @@
 - (IBAction)changeBtnPressed:(UIButton *)sender;
 - (IBAction)sendBtnPressed:(UIButton *)sender;
 - (IBAction)backBtnPressed:(id)sender;
+
+@property (retain, nonatomic) NSDictionary *dictData;
+@property (retain, nonatomic) NSArray *commentArray;
 
 @end

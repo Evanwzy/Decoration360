@@ -10,12 +10,16 @@
 #import "NIDropDown.h"
 #import "RKNetworkRequestManager.h"
 
-@interface RKCaseListViewController : UIViewController <NIDropDownDelegate, RKRequestManagerCaseListDelegate> {
+@interface RKCaseListViewController : UIViewController <NIDropDownDelegate, RKRequestManagerCaseListDelegate,UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UIButton *btnStyle;
     IBOutlet UIButton *btnSite;
     NIDropDown *dropDwon;
 }
 
+@property (retain, nonatomic) UITableView *tableView;
+@property (retain, nonatomic) NSArray *dataArray;
+@property int num;
+@property (retain, nonatomic) IBOutlet UIImageView *imageView;
 @property (retain, nonatomic) IBOutlet UIButton *btnStyle;
 @property (retain, nonatomic) IBOutlet UIButton *btnSite;
 
