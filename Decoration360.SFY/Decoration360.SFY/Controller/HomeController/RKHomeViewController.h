@@ -24,12 +24,14 @@
 @property (retain, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (retain, nonatomic) IBOutlet UIButton *takingBtn;
 @property (retain, nonatomic) IBOutlet UIButton *caseBtn;
+@property (retain, nonatomic) IBOutlet UIButton *activityBtn;
 
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bottomImageView;
 @property (retain, nonatomic) IBOutlet UIButton *otherBtn;
 @property (retain, nonatomic) IBOutlet UIButton *companyBtn;
 @property (retain, nonatomic) IBOutlet UIButton *designerBtn;
+@property (retain, nonatomic) IBOutlet UIButton *projectManagerBtn;
 
 
 

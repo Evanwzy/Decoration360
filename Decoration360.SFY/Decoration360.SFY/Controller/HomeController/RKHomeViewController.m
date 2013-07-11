@@ -164,7 +164,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     NSString *theID = [NSString stringWithString:[_idArray objectAtIndex:page.currentPage]];
     NSLog(@"%@", theID);
     RKCasesViewController *cvCtr =[[RKCasesViewController alloc]init];
-    cvCtr.num =[theID intValue]-1;
+    cvCtr.aID =[theID intValue];
     cvCtr.type =@"activity";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:cvCtr];
 }
@@ -198,6 +198,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [_takingBtn setImage:[UIImage imageNamed:@"icon_takingphoto.png"] forState:UIControlStateNormal];
     [_otherBtn setImage:[UIImage imageNamed:@"icon_more.png"] forState:UIControlStateNormal];
     [_companyBtn setImage:[UIImage imageNamed:@"home_companyInfo.png"] forState:UIControlStateNormal];
+    [_activityBtn setImage:[UIImage imageNamed:@"icon_activity.png"] forState:UIControlStateNormal];
+    [_projectManagerBtn setImage:[UIImage imageNamed:@"icon_manager.png"] forState:UIControlStateNormal];
     
     if (! IS_IPHONE_5) {
         self.bgImageView.image =[UIImage imageNamed:@"home_bg.png"];
@@ -206,10 +208,14 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
         _caseBtn.frame =CGRectMake(20, 249, 141, 61);
         _designerBtn.frame =CGRectMake(162, 249, 133, 62);
         
-        
+        _takingBtn.frame =CGRectMake(4.0f, 327.0f, 159.0f, 64.0f);
+        _projectManagerBtn.frame =CGRectMake(159.0f, 327.0f, 159.0f, 64.0f);
+        _activityBtn.frame =CGRectMake(4.0f, 392.0f, 159.0f, 64.0f);
+        _otherBtn.frame =CGRectMake(160.0f, 392.0f, 159.0f, 64.0f);
     }else {
         self.bgImageView.image =[UIImage imageNamed:@"home_bg_568.png"];
     }
+    
     
     [self.view bringSubviewToFront:_takingBtn];
     [self.view bringSubviewToFront:_otherBtn];
@@ -237,10 +243,12 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 }
 
 - (IBAction)activityBtnPressed:(id)sender {
+    NSString *theID = [NSString stringWithString:[_idArray objectAtIndex:0]];
+    NSLog(@"%@", theID);
     RKCasesViewController *cvCtr =[[RKCasesViewController alloc]init];
-    cvCtr.type =@"companyInfo";
+    cvCtr.aID =[theID intValue];
+    cvCtr.type =@"activity";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:cvCtr];
-    [cvCtr release];
 }
 
 - (IBAction)designerBtnPressed:(id)sender {
@@ -267,6 +275,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [_companyBtn release];
     [_logoImageView release];
     [_designerBtn release];
+    [_activityBtn release];
+    [_projectManagerBtn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -278,6 +288,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [self setCompanyBtn:nil];
     [self setLogoImageView:nil];
     [self setDesignerBtn:nil];
+    [self setActivityBtn:nil];
+    [self setProjectManagerBtn:nil];
     [super viewDidUnload];
 }
 @end

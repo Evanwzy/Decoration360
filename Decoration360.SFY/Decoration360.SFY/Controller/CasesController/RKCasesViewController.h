@@ -26,6 +26,7 @@
 @property (nonatomic,retain)NSMutableArray        *x_textArray;
 
 @property (nonatomic, retain)NSString *type;
+@property int aID;
 @property int num;
 @property (nonatomic, retain)NSArray *arr;
 

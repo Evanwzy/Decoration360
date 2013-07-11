@@ -62,6 +62,9 @@
     x_photoArray =[[NSMutableArray alloc]init];
     x_textArray =[[NSMutableArray alloc]init];
     for (int i =0; i <[_arr count]; i++) {
+        if ([[[_arr objectAtIndex:i] objectForKey:@"id"] intValue] ==_aID) {
+            _num =i;
+        }
         [x_photoArray addObject:[[_arr objectAtIndex:i] objectForKey:@"pics"]];
         [x_textArray addObject:[[_arr objectAtIndex:i] objectForKey:@"title"]];
     }

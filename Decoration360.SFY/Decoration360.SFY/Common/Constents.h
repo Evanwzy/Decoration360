@@ -33,5 +33,5 @@
 #define GetThemeDetailUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiTopic/detailed", SERVER_URL]
 #define GetCaseInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCase/index", SERVER_URL]
 #define GetCompanyInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCompany/index", SERVER_URL]
-#define GetActivityInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/index", SERVER_URL]
+#define GetActivityInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/activeList", SERVER_URL]
 

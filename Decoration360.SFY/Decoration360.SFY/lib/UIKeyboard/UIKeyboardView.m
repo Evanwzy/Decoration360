@@ -21,13 +21,13 @@
 		
 		keyboardToolbar.barStyle = UIBarStyleBlackTranslucent;
 		
-		UIBarButtonItem *previousBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"previous", @"")
+		UIBarButtonItem *previousBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"前一项", @"")
 																			style:UIBarButtonItemStyleBordered
 																		   target:self
 																		   action:@selector(toolbarButtonTap:)];
 		previousBarItem.tag=1;
 		
-		UIBarButtonItem *nextBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"next", @"")
+		UIBarButtonItem *nextBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"后一项", @"")
 																		style:UIBarButtonItemStyleBordered
 																	   target:self
 																	   action:@selector(toolbarButtonTap:)];
@@ -37,7 +37,7 @@
 																					  target:nil
 																					  action:nil];
 		
-		UIBarButtonItem *doneBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"done", @"")
+		UIBarButtonItem *doneBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"完 成", @"")
 																		style:UIBarButtonItemStyleDone
 																	   target:self
 																	   action:@selector(toolbarButtonTap:)];
