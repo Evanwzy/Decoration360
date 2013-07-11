@@ -19,6 +19,7 @@
 @protocol RKRequestManagerCheckDelegate;
 @protocol RKRequestManagerRegisterDelegate;
 @protocol RKRequestManagerCaseListDelegate;
+@protocol RKRequestManagerAcaivityDelegate;
 @protocol RKRequestManagerContentDelegate;
 @protocol RKRequestManagerExperterInfoDelegate;
 @protocol RKRequestManagerThemeInfoDelegate;
@@ -41,6 +42,7 @@
     id<RKRequestManagerCheckDelegate> checkDelegate;
     id<RKRequestManagerRegisterDelegate> registerDelegate;
     id<RKRequestManagerCaseListDelegate> caseListDelegate;
+    id<RKRequestManagerAcaivityDelegate> activityDelegate;
     id<RKRequestManagerContentDelegate> contentDelegate;
     id<RKRequestManagerExperterInfoDelegate> getExperterInfoDelegate;
     id<RKRequestManagerThemeInfoDelegate> getThemeInformationDelegate;
@@ -60,6 +62,7 @@
 @property (nonatomic, assign) id<RKRequestManagerCommitDelegate> commitDelegate;
 @property (nonatomic, assign) id<RKRequestManagerCheckDelegate> checkDelegate;
 @property (nonatomic, assign) id<RKRequestManagerCaseListDelegate> caseListDelegate;
+@property (nonatomic, assign) id<RKRequestManagerAcaivityDelegate> activityDelegate;
 @property (nonatomic, assign) id<RKRequestManagerContentDelegate> contentDelegate;
 @property (nonatomic, assign) id<RKRequestManagerRegisterDelegate> registerDelegate;
 
@@ -101,7 +104,8 @@
 - (void)getHomeData;
 - (void)getCommitData;
 - (void)getCompanyInfo;
--(void)getThemeInfoFrom:(NSString *)startNum To:(NSString *)endNum;
+- (void)getActivityInfo;
+- (void)getThemeInfoFrom:(NSString *)startNum To:(NSString *)endNum;
 - (void)getExporterInfoWithAppID;
 - (void)getContentInfo:(NSString *)tid :(NSString *)startNum :(NSString *)endNum;
 - (void)getCaseInfoWithStyle:(NSString *)style andSite:(NSString *)site;
@@ -134,7 +138,7 @@
 @protocol RKRequestManagerHomeDelegate <NSObject>
 
 @optional
-- (void)homeQueryData:(NSMutableArray *)imageArray :(NSMutableArray *)titleArray;
+- (void)homeQueryData:(NSMutableArray *)imageArray :(NSMutableArray *)titleArray :(NSMutableArray *)idArray;
 - (void)homeQueryDatafaied;
 
 @end
@@ -161,6 +165,12 @@
 @protocol RKRequestManagerCaseListDelegate <NSObject>
 
 - (void)caseListQueryData:(NSDictionary *)dict;
+
+@end
+
+@protocol RKRequestManagerAcaivityDelegate <NSObject>
+
+- (void)activityQueryData:(NSArray *)arr;
 
 @end
 

@@ -14,11 +14,14 @@
     IBOutlet UIScrollView *sv;
     UIPageControl *page;
     IBOutlet UIWebView *wb;
-    NSArray *Arr;
     NSArray *titleArr;
+    NSArray *Arr;
     int TimeNum;
     BOOL Tend;
 }
+
+@property (retain, nonatomic) NSArray *idArray;
+@property (retain, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (retain, nonatomic) IBOutlet UIButton *takingBtn;
 @property (retain, nonatomic) IBOutlet UIButton *caseBtn;
 
@@ -26,6 +29,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bottomImageView;
 @property (retain, nonatomic) IBOutlet UIButton *otherBtn;
 @property (retain, nonatomic) IBOutlet UIButton *companyBtn;
+@property (retain, nonatomic) IBOutlet UIButton *designerBtn;
 
 
 

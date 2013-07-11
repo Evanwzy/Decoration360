@@ -36,7 +36,7 @@
     
     [Common checkUserDefault];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target: self selector: @selector(handleTimer:)  userInfo:nil  repeats: YES];
-    
+    [self setUI];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -58,7 +58,7 @@
     [[RKNetworkRequestManager sharedManager] getHomeData];
 }
 
-- (void)homeQueryData:(NSMutableArray *)imageArray :(NSMutableArray *)titleArray {
+- (void)homeQueryData:(NSMutableArray *)imageArray :(NSMutableArray *)titleArray :(NSMutableArray *)idArray{
     
 //    // 初始化自定义ScrollView类对象
 //    AOScrollerView *aSV = [[AOScrollerView alloc]initWithNameArr:imageArray titleArr:titleArray height:88];
@@ -73,27 +73,23 @@
     
     Arr=[[NSArray alloc]initWithArray:imageArray];
     titleArr =[[NSArray alloc]initWithArray:titleArray];
+    _idArray =[[NSArray alloc]initWithArray:idArray];
     
     for (UIView * subview in [sv subviews]) {
         [subview removeFromSuperview];
     }
     [self AdImg:Arr];
     [self setCurrentPage:page.currentPage];
-    [self setUI];
 }
 
 - (void)homeQueryDatafaied {
     [self setUI];
 }
 
--(void)buttonClick:(int)vid {
-    NSLog(@"%d", vid);
-}
-
 #pragma mark - 5秒换图片
 - (void) handleTimer: (NSTimer *) timer
 {
-    if (TimeNum % 5 == 0 ) {
+    if (TimeNum % 3 == 0 ) {
         
         if (!Tend) {
             page.currentPage++;
@@ -165,8 +161,12 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 
 -(void)Action{
     
-    NSString *theTitle = [NSString stringWithString:[titleArr objectAtIndex:page.currentPage]];
-    NSLog(@"%@", theTitle);
+    NSString *theID = [NSString stringWithString:[_idArray objectAtIndex:page.currentPage]];
+    NSLog(@"%@", theID);
+    RKCasesViewController *cvCtr =[[RKCasesViewController alloc]init];
+    cvCtr.num =[theID intValue]-1;
+    cvCtr.type =@"activity";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:cvCtr];
 }
 
 #pragma mark - scrollView && page
@@ -197,9 +197,16 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     
     [_takingBtn setImage:[UIImage imageNamed:@"icon_takingphoto.png"] forState:UIControlStateNormal];
     [_otherBtn setImage:[UIImage imageNamed:@"icon_more.png"] forState:UIControlStateNormal];
+    [_companyBtn setImage:[UIImage imageNamed:@"home_companyInfo.png"] forState:UIControlStateNormal];
     
     if (! IS_IPHONE_5) {
         self.bgImageView.image =[UIImage imageNamed:@"home_bg.png"];
+        _logoImageView.frame =CGRectMake(20, 170, 88, 60);
+        _companyBtn.frame =CGRectMake(107, 170, 189, 60);
+        _caseBtn.frame =CGRectMake(20, 249, 141, 61);
+        _designerBtn.frame =CGRectMake(162, 249, 133, 62);
+        
+        
     }else {
         self.bgImageView.image =[UIImage imageNamed:@"home_bg_568.png"];
     }
@@ -258,6 +265,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [_otherBtn release];
     [_caseBtn release];
     [_companyBtn release];
+    [_logoImageView release];
+    [_designerBtn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -267,6 +276,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [self setOtherBtn:nil];
     [self setCaseBtn:nil];
     [self setCompanyBtn:nil];
+    [self setLogoImageView:nil];
+    [self setDesignerBtn:nil];
     [super viewDidUnload];
 }
 @end

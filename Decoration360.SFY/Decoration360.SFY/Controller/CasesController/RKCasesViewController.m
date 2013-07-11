@@ -7,8 +7,8 @@
 //
 
 #import "RKCasesViewController.h"
-#import "RKNetworkRequestManager.h"
 #import "UIImageView+WebCache.h"
+#import "Common.h"
 
 @implementation RKCasesViewController
 
@@ -31,33 +31,44 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    [Common cancelAllRequestOfAllQueue];
     [self requestDataQuery];
-    
-
-    NSMutableArray *tmpArray =[[NSMutableArray alloc] initWithCapacity:0];
-    self.x_photoArray =tmpArray;
-    self.x_textArray =tmpArray;
-    
-    x_photoArray =[[NSMutableArray alloc]init];
-    x_textArray =[[NSMutableArray alloc]init];
-    for (int i =0; i <[_arr count]; i++) {
-        [x_photoArray addObject:[[_arr objectAtIndex:i] objectForKey:@"url"]];
-        [x_textArray addObject:[[_arr objectAtIndex:i] objectForKey:@"info"]];
-    }
-    
-    // 配置scrollView
-    [self initScrollView];
-    //创建textView
-    [self createTextView];
 }
 
 #pragma mark - requestDataQuery
 - (void)requestDataQuery {
-    if ([_type isEqualToString:@"companyInfo"]) {
+    if ([_type isEqualToString:@"activity"]) {
         RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
-        [manager getCompanyInfo];
+        manager.activityDelegate = self;
+        [manager getActivityInfo];
+    }else if ([_type isEqualToString:@"case"]) {
+        
+        x_photoArray =[[NSMutableArray alloc]init];
+        x_textArray =[[NSMutableArray alloc]init];
+        for (int i =0; i <[_arr count]; i++) {
+            [x_photoArray addObject:[[_arr objectAtIndex:i] objectForKey:@"url"]];
+            [x_textArray addObject:[[_arr objectAtIndex:i] objectForKey:@"info"]];
+            
+        }
+        // 配置scrollView
+        [self initScrollView];
+        //创建textView
+        [self createTextView];
     }
+}
+
+-(void)activityQueryData:(NSArray *)arr {
+    self.arr =arr;
+    x_photoArray =[[NSMutableArray alloc]init];
+    x_textArray =[[NSMutableArray alloc]init];
+    for (int i =0; i <[_arr count]; i++) {
+        [x_photoArray addObject:[[_arr objectAtIndex:i] objectForKey:@"pics"]];
+        [x_textArray addObject:[[_arr objectAtIndex:i] objectForKey:@"title"]];
+    }
+    // 配置scrollView
+    [self initScrollView];
+    //创建textView
+    [self createTextView];
 }
 
 #pragma mark defined Method
@@ -83,6 +94,7 @@
     }
     self.x_scrollView.contentSize = CGSizeMake(320*[self.x_photoArray count],180);
     [self.x_scrollView setContentOffset:CGPointMake(320*_num, 0)];
+    [self.x_scrollView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.x_scrollView];
     [x_scrollView release];
     //配置pageControl
@@ -102,7 +114,7 @@
 {
     UITextView *tmpTextView =[[UITextView alloc]initWithFrame:CGRectMake(0,390,320,80)];
     tmpTextView.backgroundColor =[UIColor clearColor];
-    tmpTextView.text =[self.x_textArray objectAtIndex:0];
+    tmpTextView.text =[self.x_textArray objectAtIndex:_num];
     tmpTextView.editable =NO;
     self.x_cityRepresent =tmpTextView;
     [tmpTextView release];

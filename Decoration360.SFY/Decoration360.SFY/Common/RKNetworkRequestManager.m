@@ -18,7 +18,7 @@
 
 @synthesize queue;
 @synthesize singleQueue;
-@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate;
+@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate, activityDelegate;
 #pragma - singleton
 
 static RKNetworkRequestManager *_networkRequestManager;
@@ -76,7 +76,7 @@ static RKNetworkRequestManager *_networkRequestManager;
         NSDictionary *homeDict =[NSDictionary dictionaryWithObjectsAndKeys:IdStrArray, @"id", ImgStrArray, @"pics", TitleStrArray, @"title", nil];
         NSString *homeDictPath  =[Common pathForPlist:@"homeDict.pilst"];
         [homeDict writeToFile:homeDictPath atomically:YES];
-        [homeDelegate homeQueryData:ImgStrArray :TitleStrArray];
+        [homeDelegate homeQueryData:ImgStrArray :TitleStrArray :IdStrArray];
     }
     
 }
@@ -259,6 +259,38 @@ static RKNetworkRequestManager *_networkRequestManager;
     @catch (NSException *exception) {
         NSLog(@"[%@]%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd), exception);
     }
+}
+
+-(void)getActivityInfo {
+    [self checkQueue];
+    [Common cancelAllRequestWithQueue:queue];
+    NSURL *url = [NSURL URLWithString:GetActivityInfo];
+    ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(getActivityInfoDone:)];
+    [request setDidFailSelector:@selector(commonRequestQueryDataFailed:)];
+    request.timeOutSeconds = 10;
+    //    [request startAsynchronous];
+    [queue addOperation:request];
+}
+
+- (void)getActivityInfoDone: (ASIHTTPRequest *)request {
+    @try {
+        //        NSLog(@"%@", [Common operaterStr:[request responseString]]);
+        NSDictionary *data = [[Common operaterStr:[request responseString]] JSONValue];
+        if ([[data valueForKey:@"status"] isEqualToString:@"0"]) {
+            NSLog(@"%@", [data valueForKey:@"msg"]);
+            [activityDelegate activityQueryData:[data objectForKey:@"data"]];
+        }if ([[data valueForKey:@"status"] isEqualToString:@"1001"]) {
+            NSLog(@"%@", [data valueForKey:@"msg"]);
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"[%@]%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd), exception);
+    }
+    
 }
 
 -(void)loginIn:(NSString *)account :(NSString *)password {

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "NIDropDown.h"
+#import "RKNetworkRequestManager.h"
 
-@interface RKCasesViewController : UIViewController <UIScrollViewDelegate> {
+@interface RKCasesViewController : UIViewController <UIScrollViewDelegate, RKRequestManagerAcaivityDelegate> {
     
     UIScrollView              *x_scrollView;
     UIPageControl             *x_pageControl;
