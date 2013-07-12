@@ -12,7 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface RKContentViewController : UIViewController<UIKeyboardViewControllerDelegate, AVAudioRecorderDelegate, RKRequestManagerContentDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface RKContentViewController : UIViewController<UIKeyboardViewControllerDelegate, AVAudioRecorderDelegate, RKRequestManagerContentDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
     UIKeyboardViewController *keyBoardController;
     AVAudioRecorder *recorder;
     NSTimer *timer;

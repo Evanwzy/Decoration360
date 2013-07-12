@@ -9,6 +9,7 @@
 #import "RKPhotoTalkingViewController.h"
 #import "RKtakingPhotoViewController.h"
 #import "RKHomeViewController.h"
+#import "RKLoginViewController.h"
 #import "Common.h"
 #import "RKCommitTableViewCell.h"
 #import "UIImageView+WebCache.h"
@@ -224,9 +225,17 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:tpvCtr];
         [tpvCtr release];
     }else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"请先登陆！" message:@"先登录才能发布主题" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alert = [[[UIAlertView alloc]initWithTitle:@"请先登陆！" message:@"先登录才能发布主题" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] autorelease];
+        alert.delegate =self;
         [alert show];
-        [alert release];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex ==1) {
+        RKLoginViewController *lvCtr =[[RKLoginViewController alloc]init];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:lvCtr];
+        [lvCtr release];
     }
 }
 

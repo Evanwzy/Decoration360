@@ -10,7 +10,7 @@
 #import "RKNetworkRequestManager.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface RKPhotoTalkingViewController : UIViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource, RKRequestManagerThemeInfoDelegate>{
+@interface RKPhotoTalkingViewController : UIViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource, RKRequestManagerThemeInfoDelegate, UIAlertViewDelegate>{
     EGORefreshTableHeaderView *_refreshHeaderView;
 	
 	//  Reloading var should really be your tableviews datasource

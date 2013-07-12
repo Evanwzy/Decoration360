@@ -15,8 +15,8 @@
 #pragma mark - SERVER_Adrr
 
 //test URL
-#define SERVER_URL @"http://yijianli.cn/apps"
-//#define SERVER_URL @"http://192.168.1.101/ios_apps"
+//#define SERVER_URL @"http://yijianli.com/apps"
+#define SERVER_URL @"http://192.168.1.106/apps"
 
 #pragma mark - upload URL_Adrr
 #define SharedUploadUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiTopic/add", SERVER_URL]
@@ -34,4 +34,5 @@
 #define GetCaseInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCase/index", SERVER_URL]
 #define GetCompanyInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCompany/index", SERVER_URL]
 #define GetActivityInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/activeList", SERVER_URL]
+#define GetManagerList [NSString stringWithFormat:@"%@/index.php?s=/ApiProject/", SERVER_URL]
 

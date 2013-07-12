@@ -12,6 +12,8 @@
 #import "RKCaseListViewController.h"
 #import "RKCasesViewController.h"
 #import "RKCompanyViewController.h"
+#import "RKDesignerViewController.h"
+#import "RKManagerListViewController.h"
 #import "Common.h"
 #import "UIButton+WebCache.h"
 
@@ -221,6 +223,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [self.view bringSubviewToFront:_otherBtn];
     [self.view bringSubviewToFront:_caseBtn];
     [self.view bringSubviewToFront:_companyBtn];
+    [self.view bringSubviewToFront:_designerBtn];
 }
 
 - (IBAction)casesBtnPressed:(id)sender {
@@ -240,6 +243,23 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 
 
 - (IBAction)projectmanagerBtnPressed:(id)sender {
+    if ([Common isLogined]) {
+        RKManagerListViewController *mlvCtr =[[RKManagerListViewController alloc]init];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:mlvCtr];
+        [mlvCtr release];
+    }else {
+        UIAlertView *alert = [[[UIAlertView alloc]initWithTitle:@"请先登陆！" message:@"先登录才能发布主题" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] autorelease];
+        alert.delegate =self;
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex ==1) {
+        RKLoginViewController *lvCtr =[[RKLoginViewController alloc]init];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:lvCtr];
+        [lvCtr release];
+    }
 }
 
 - (IBAction)activityBtnPressed:(id)sender {
@@ -252,6 +272,9 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 }
 
 - (IBAction)designerBtnPressed:(id)sender {
+    RKDesignerViewController *cvCtr =[[RKDesignerViewController alloc]init];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:cvCtr];
+    [cvCtr release];
 }
 
 - (IBAction)companyInfoBtnPressed:(id)sender {

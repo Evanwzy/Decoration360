@@ -50,6 +50,13 @@
 		6926BD6F17865630002A9F19 /* RKCommitViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6926BD6E17865630002A9F19 /* RKCommitViewCell.xib */; };
 		6926BD7317868784002A9F19 /* RKCaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6926BD7117868783002A9F19 /* RKCaseListViewController.m */; };
 		6926BD7417868784002A9F19 /* RKCaseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6926BD7217868783002A9F19 /* RKCaseListViewController.xib */; };
+		69356CDC178F94A400808097 /* RKDesignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69356CDA178F94A400808097 /* RKDesignerViewController.m */; };
+		69356CDD178F94A400808097 /* RKDesignerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69356CDB178F94A400808097 /* RKDesignerViewController.xib */; };
+		69356CE3178FAB6200808097 /* RKManagerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69356CE1178FAB6200808097 /* RKManagerListViewController.m */; };
+		69356CE4178FAB6200808097 /* RKManagerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69356CE2178FAB6200808097 /* RKManagerListViewController.xib */; };
+		69356CE9178FB61500808097 /* RKNewCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69356CE7178FB61500808097 /* RKNewCaseViewController.m */; };
+		69356CEA178FB61500808097 /* RKNewCaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69356CE8178FB61500808097 /* RKNewCaseViewController.xib */; };
+		69356CEC178FDFCD00808097 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69356CEB178FDFCD00808097 /* area.plist */; };
 		69469462176DC5CE00DEDB92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469461176DC5CE00DEDB92 /* UIKit.framework */; };
 		69469464176DC5CE00DEDB92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469463176DC5CE00DEDB92 /* Foundation.framework */; };
 		69469466176DC5CE00DEDB92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469465176DC5CE00DEDB92 /* CoreGraphics.framework */; };
@@ -211,6 +218,16 @@
 		6926BD7017868782002A9F19 /* RKCaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCaseListViewController.h; sourceTree = "<group>"; };
 		6926BD7117868783002A9F19 /* RKCaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCaseListViewController.m; sourceTree = "<group>"; };
 		6926BD7217868783002A9F19 /* RKCaseListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCaseListViewController.xib; sourceTree = "<group>"; };
+		69356CD9178F94A400808097 /* RKDesignerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDesignerViewController.h; sourceTree = "<group>"; };
+		69356CDA178F94A400808097 /* RKDesignerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDesignerViewController.m; sourceTree = "<group>"; };
+		69356CDB178F94A400808097 /* RKDesignerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKDesignerViewController.xib; sourceTree = "<group>"; };
+		69356CE0178FAB6200808097 /* RKManagerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKManagerListViewController.h; sourceTree = "<group>"; };
+		69356CE1178FAB6200808097 /* RKManagerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKManagerListViewController.m; sourceTree = "<group>"; };
+		69356CE2178FAB6200808097 /* RKManagerListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKManagerListViewController.xib; sourceTree = "<group>"; };
+		69356CE6178FB61500808097 /* RKNewCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKNewCaseViewController.h; sourceTree = "<group>"; };
+		69356CE7178FB61500808097 /* RKNewCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKNewCaseViewController.m; sourceTree = "<group>"; };
+		69356CE8178FB61500808097 /* RKNewCaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKNewCaseViewController.xib; sourceTree = "<group>"; };
+		69356CEB178FDFCD00808097 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		6946945E176DC5CE00DEDB92 /* Decoration360.SFY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Decoration360.SFY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69469461176DC5CE00DEDB92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69469463176DC5CE00DEDB92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -462,6 +479,45 @@
 			path = contentController;
 			sourceTree = "<group>";
 		};
+		69356CD8178F948900808097 /* DesignerController */ = {
+			isa = PBXGroup;
+			children = (
+				69356CD9178F94A400808097 /* RKDesignerViewController.h */,
+				69356CDA178F94A400808097 /* RKDesignerViewController.m */,
+				69356CDB178F94A400808097 /* RKDesignerViewController.xib */,
+			);
+			path = DesignerController;
+			sourceTree = "<group>";
+		};
+		69356CDE178FAB4700808097 /* ManagerController */ = {
+			isa = PBXGroup;
+			children = (
+				69356CDF178FAB4700808097 /* CaseListController */,
+				69356CE5178FB60900808097 /* NewCaseController */,
+			);
+			path = ManagerController;
+			sourceTree = "<group>";
+		};
+		69356CDF178FAB4700808097 /* CaseListController */ = {
+			isa = PBXGroup;
+			children = (
+				69356CE0178FAB6200808097 /* RKManagerListViewController.h */,
+				69356CE1178FAB6200808097 /* RKManagerListViewController.m */,
+				69356CE2178FAB6200808097 /* RKManagerListViewController.xib */,
+			);
+			path = CaseListController;
+			sourceTree = "<group>";
+		};
+		69356CE5178FB60900808097 /* NewCaseController */ = {
+			isa = PBXGroup;
+			children = (
+				69356CE6178FB61500808097 /* RKNewCaseViewController.h */,
+				69356CE7178FB61500808097 /* RKNewCaseViewController.m */,
+				69356CE8178FB61500808097 /* RKNewCaseViewController.xib */,
+			);
+			path = NewCaseController;
+			sourceTree = "<group>";
+		};
 		69469455176DC5CE00DEDB92 = {
 			isa = PBXGroup;
 			children = (
@@ -617,8 +673,10 @@
 			children = (
 				694694A0176DC88D00DEDB92 /* HomeController */,
 				69FA5198176E9870003F77A5 /* CasesController */,
+				69356CD8178F948900808097 /* DesignerController */,
 				6953143C178D0F80006AA306 /* CompanyController */,
 				69AA5984176EA19A00AD0F5F /* SoundsController */,
+				69356CDE178FAB4700808097 /* ManagerController */,
 				69DA99C21771ADDD00C5B208 /* OtherController */,
 			);
 			path = Controller;
@@ -829,6 +887,7 @@
 		69DA99BD1771A85500C5B208 /* pilst */ = {
 			isa = PBXGroup;
 			children = (
+				69356CEB178FDFCD00808097 /* area.plist */,
 				69DA99BE1771A87000C5B208 /* default.plist */,
 			);
 			path = pilst;
@@ -996,6 +1055,10 @@
 				6920AB9A178C1AA900D805E4 /* icon_more@2x.png in Resources */,
 				69531441178D0FA2006AA306 /* RKCompanyViewController.xib in Resources */,
 				690610D6178E60E4002168AB /* RKCaseListViewCell.xib in Resources */,
+				69356CDD178F94A400808097 /* RKDesignerViewController.xib in Resources */,
+				69356CE4178FAB6200808097 /* RKManagerListViewController.xib in Resources */,
+				69356CEA178FB61500808097 /* RKNewCaseViewController.xib in Resources */,
+				69356CEC178FDFCD00808097 /* area.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1132,9 @@
 				6920AB1B178A676100D805E4 /* UIImageView+WebCache.m in Sources */,
 				69531440178D0FA2006AA306 /* RKCompanyViewController.m in Sources */,
 				690610D4178E60CD002168AB /* RKCaseListViewCell.m in Sources */,
+				69356CDC178F94A400808097 /* RKDesignerViewController.m in Sources */,
+				69356CE3178FAB6200808097 /* RKManagerListViewController.m in Sources */,
+				69356CE9178FB61500808097 /* RKNewCaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

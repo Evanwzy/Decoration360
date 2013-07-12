@@ -130,7 +130,7 @@ static RKNetworkRequestManager *_networkRequestManager;
         if ([[data valueForKey:@"status"] isEqualToString:@"0"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
             
-            [getExperterInfoDelegate getExperterInfo:[data valueForKey:@"msg"]];
+            [getExperterInfoDelegate getExperterInfo:data];
         }
     }
     @catch (NSException *exception) {
@@ -157,18 +157,16 @@ static RKNetworkRequestManager *_networkRequestManager;
 - (void)getThemeInfoDone: (ASIHTTPRequest *)request {
     @try {
 //        NSLog(@"%@", [Common operaterStr:[request responseString]]);
-        NSDictionary *data = [[Common operaterStr:[request responseString]] JSONValue];
-        
+//        NSDictionary *data = [[Common operaterStr:[request responseString]] JSONValue];
+        NSDictionary *data =[[request responseString]JSONValue];
 //        NSLog(@"%@", [request responseString]);
 //        NSDictionary *data = [[request responseString] JSONValue];
-//        NSLog(@"%@", data);
+        NSLog(@"%@", data);
         if ([[data valueForKey:@"status"] isEqualToString:@"0"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
             NSArray *a =[data valueForKey:@"data"];
             _commitNum =[a count];
 //            NSLog(@"%@",a);
-            [a writeToFile:[Common pathForPlist:@"commit.plist"] atomically:YES];
-            [a writeToFile:[Common pathForPlist:@"commit22.plist"] atomically:YES];
             [getThemeInformationDelegate themeInfoData:data];
         }
     }
@@ -425,6 +423,29 @@ static RKNetworkRequestManager *_networkRequestManager;
     }
     @catch (NSException *exception) {
         NSLog(@"[%@]%@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd), exception);
+    }
+}
+
+- (void)getManagerList {
+    [self checkQueue];
+    NSURL *url =[NSURL URLWithString:GetManagerList];
+    ASIFormDataRequest *request =[ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    request.delegate =self;
+    request.didFinishSelector =@selector(getManagerListDone:);
+    request.didFailSelector =@selector(commonRequestQueryDataFailed:);
+    request.timeOutSeconds =10.0f;
+    
+    [queue addOperation:request];
+}
+
+- (void)getManagerListDone :(ASIHTTPRequest *)request {
+    NSDictionary *data =[[Common operaterStr:[request responseString]] JSONValue];
+    NSLog(@"%@", data);
+    if ([[data objectForKey:@"status"] intValue] ==0) {
+        NSLog(@"%@", [data objectForKey:@"msg"]);
+        [getManagerListDelegate managerListQueryData:data];
     }
 }
 

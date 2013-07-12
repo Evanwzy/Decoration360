@@ -50,7 +50,8 @@
 }
 
 + (NSString *)operaterStr:(NSString *)str {
-    return [str substringFromIndex:3];
+//    return [str substringFromIndex:3];
+    return str;
 }
 
 +(NSString *)getKey {

@@ -23,6 +23,7 @@
 @protocol RKRequestManagerContentDelegate;
 @protocol RKRequestManagerExperterInfoDelegate;
 @protocol RKRequestManagerThemeInfoDelegate;
+@protocol RKRequestManagerManagerListDelegate;
 
 @protocol RKRequestManagerDownloadThemePicDelegate;
 
@@ -46,6 +47,7 @@
     id<RKRequestManagerContentDelegate> contentDelegate;
     id<RKRequestManagerExperterInfoDelegate> getExperterInfoDelegate;
     id<RKRequestManagerThemeInfoDelegate> getThemeInformationDelegate;
+    id<RKRequestManagerManagerListDelegate> getManagerListDelegate;
     
     id<RKRequestManagerDownloadThemePicDelegate> downloadThemePicDelegate;
 }
@@ -65,7 +67,7 @@
 @property (nonatomic, assign) id<RKRequestManagerAcaivityDelegate> activityDelegate;
 @property (nonatomic, assign) id<RKRequestManagerContentDelegate> contentDelegate;
 @property (nonatomic, assign) id<RKRequestManagerRegisterDelegate> registerDelegate;
-
+@property (nonatomic, assign) id<RKRequestManagerManagerListDelegate> getManagerListDelegate;
 @property (nonatomic,assign) id<RKRequestManagerExperterInfoDelegate> getExperterInfoDelegate;
 @property (nonatomic, assign) id<RKRequestManagerThemeInfoDelegate> getThemeInformationDelegate;
 
@@ -107,6 +109,7 @@
 - (void)getActivityInfo;
 - (void)getThemeInfoFrom:(NSString *)startNum To:(NSString *)endNum;
 - (void)getExporterInfoWithAppID;
+- (void)getManagerList;
 - (void)getContentInfo:(NSString *)tid :(NSString *)startNum :(NSString *)endNum;
 - (void)getCaseInfoWithStyle:(NSString *)style andSite:(NSString *)site;
 
@@ -176,7 +179,7 @@
 
 @protocol RKRequestManagerExperterInfoDelegate <NSObject>
 
-- (void) getExperterInfo:(NSArray *)expertInfo;
+- (void) getExperterInfo:(NSDictionary *)expertInfo;
 
 @end
 
@@ -198,5 +201,11 @@
 @protocol RKRequestManagerContentDelegate <NSObject>
 
 - (void)contentInfoData:(NSDictionary *)dict;
+
+@end
+
+@protocol RKRequestManagerManagerListDelegate <NSObject>
+
+- (void)managerListQueryData :(NSDictionary *)dict;
 
 @end
