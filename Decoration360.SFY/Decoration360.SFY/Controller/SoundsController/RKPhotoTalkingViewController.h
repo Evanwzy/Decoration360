@@ -6,17 +6,37 @@
 //  Copyright (c) 2013年 Evan. All rights reserved.
 //
 
+
+
 #import <UIKit/UIKit.h>
 #import "RKNetworkRequestManager.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface RKPhotoTalkingViewController : UIViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource, RKRequestManagerThemeInfoDelegate, UIAlertViewDelegate>{
+typedef NS_ENUM(NSInteger, Type){
+    THEME =1,
+    PROJECT,
+};
+
+typedef NS_ENUM(NSInteger, Step){
+    YINBI =1,
+    NIMU,
+    YOUQI,
+    ANZHUANG,
+    JUNGONG,
+    RUANZHUANG,
+};
+
+@interface RKPhotoTalkingViewController : UIViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource, RKRequestManagerThemeInfoDelegate, UIAlertViewDelegate, RKRequestManagerThemeInfoDelegate>{
     EGORefreshTableHeaderView *_refreshHeaderView;
 	
 	//  Reloading var should really be your tableviews datasource
 	//  Putting it here for demo purposes
 	BOOL _reloading;
 }
+
+@property int type;
+@property int step;
+@property (retain, nonatomic) NSString *tid;
 
 @property (retain, nonatomic)UIImageView *imgView;
 @property (retain, nonatomic)UIView *contentView;

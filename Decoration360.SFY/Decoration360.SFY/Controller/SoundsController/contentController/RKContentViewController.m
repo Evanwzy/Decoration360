@@ -85,7 +85,7 @@
     [super viewDidUnload];
 }
 
-#pragma - UIKeyboardViewController delegate methods
+#pragma mark - UIKeyboardViewController delegate methods
 
 - (void)alttextFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"%@", textField.text);

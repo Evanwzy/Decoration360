@@ -7,6 +7,7 @@
 //
 
 #import "RKtakingPhotoViewController.h"
+#import "RKPhotoTalkingViewController.h"
 #import "RKtakingVoiceViewController.h"
 #import "CameraImageHelper.h"
 #import "Common.h"
@@ -31,7 +32,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIView *tmpView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, 568, 320)];
+    UIView *tmpView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 280)];
     self.popView =tmpView;
     [tmpView release];
     [_popView setBackgroundColor:[UIColor clearColor]];
@@ -89,8 +90,14 @@
 -(void)getPicture
 {
     self.image =[CameraImageHelper image];
+    NSLog(@"%f,%f",self.image.size.height,self.image.size.width);
     RKtakingVoiceViewController *tvCtr =[[[RKtakingVoiceViewController alloc]init] autorelease];
     tvCtr.preImage = _image;
+    if (_type ==PROJECT) {
+        tvCtr.type =PROJECT;
+        tvCtr.tid =_tid;
+        tvCtr.step =_step;
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:tvCtr];
 }
 

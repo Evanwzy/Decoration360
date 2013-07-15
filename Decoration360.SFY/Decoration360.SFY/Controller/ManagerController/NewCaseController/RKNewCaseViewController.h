@@ -7,12 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIKeyboardViewController.h"
+#import "UIImageView+WebCache.h"
 
-#define PROVINCE_COMPONENT  0
-#define CITY_COMPONENT      1
-#define SITE_COMPONENT      2
 
-@interface RKNewCaseViewController : UIViewController {
+typedef NS_ENUM(NSInteger, Level){
+    PROVINCE,
+    CITY,
+    SITE,
+};
+
+@interface RKNewCaseViewController : UIViewController<UIKeyboardViewControllerDelegate, UIPickerViewDelegate,  UIPickerViewDataSource> {
+    UIKeyboardViewController *keyBoardController;
+    
     UIPickerView *picker;
     UIButton *button;
     
@@ -22,6 +29,8 @@
     NSArray *district;
     
     NSString *selectedProvince;
+    
+    int level;
 }
 @property (nonatomic, retain) UIPickerView *picker;
 @property (nonatomic, retain) UIButton *button;
@@ -31,8 +40,17 @@
 @property (nonatomic, retain) NSArray *city;
 @property (nonatomic, retain) NSArray *district;
 
+@property int provinceRow;
+@property int cityRow;
+@property int districtRow;
+
 @property (nonatomic, retain) NSString *selectedProvince;
 
+@property (nonatomic, retain) UIToolbar *toolbar;
+
+@property (retain, nonatomic) IBOutlet UIButton *provinceBtn;
+@property (retain, nonatomic) IBOutlet UIButton *cityBtn;
+@property (retain, nonatomic) IBOutlet UIButton *siteBtn;
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *iconImage;
 @property (retain, nonatomic) IBOutlet UITextField *styleText;

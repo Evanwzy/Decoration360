@@ -7,6 +7,7 @@
 //
 
 #import "RKshareThemeViewController.h"
+#import "RKPhotoTalkingViewController.h"
 #import "RKHomeViewController.h"
 
 
@@ -30,6 +31,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    _step =0;
+    
     RKNetworkRequestManager *manager=[RKNetworkRequestManager sharedManager];
     manager.getExperterInfoDelegate =self;
     [manager getExporterInfoWithAppID];
@@ -44,8 +47,13 @@
 - (IBAction)sharedBtnPressed:(id)sender {
     RKNetworkRequestManager *manager=[RKNetworkRequestManager sharedManager];
     
-    [manager sharedTheme:[_imageFile stringByAppendingFormat:@".png"] :[_mp3File stringByAppendingFormat:@".aac"] ];
     manager.sharedImageDelegate =self;
+    
+    if (_type ==PROJECT) {
+        [manager sharedTheme:[_imageFile stringByAppendingFormat:@".png"] :[_mp3File stringByAppendingFormat:@".aac"] :_step :_tid];
+    }else {
+        [manager sharedTheme:[_imageFile stringByAppendingFormat:@".png"] :[_mp3File stringByAppendingFormat:@".aac"] ];
+    }
 }
 - (void)dealloc {
     [_imageView release];

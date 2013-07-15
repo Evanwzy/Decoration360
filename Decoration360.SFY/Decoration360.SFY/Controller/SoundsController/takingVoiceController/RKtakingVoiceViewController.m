@@ -9,6 +9,7 @@
 #import "RKtakingVoiceViewController.h"
 #import "RKtakingPhotoViewController.h"
 #import "RKshareThemeViewController.h"
+#import "RKPhotoTalkingViewController.h"
 #import "Common.h"
 #import "UIImage+Scale.h"
 #import "lame.h"
@@ -197,6 +198,11 @@
     RKshareThemeViewController *stvCtr =[[[RKshareThemeViewController alloc]init] autorelease];
     stvCtr.mp3File =_mp3File;
     stvCtr.imageFile =_imageFile;
+    if (_type ==PROJECT) {
+        stvCtr.type =PROJECT;
+        stvCtr.tid =_tid;
+        stvCtr.step =_step;
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:stvCtr];
 }
 @end

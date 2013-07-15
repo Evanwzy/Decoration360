@@ -18,7 +18,7 @@
 
 @synthesize queue;
 @synthesize singleQueue;
-@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate, activityDelegate;
+@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate, activityDelegate, getManagerListDelegate;
 #pragma - singleton
 
 static RKNetworkRequestManager *_networkRequestManager;
@@ -145,6 +145,7 @@ static RKNetworkRequestManager *_networkRequestManager;
     NSURL *url = [NSURL URLWithString:GetThemeUrlStr];
     ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
     [request addPostValue:[NSString stringWithFormat:@"%@,%@", startNum, endNum] forKey:@"page"];
     [request setDelegate:self];
     [request setDidFinishSelector:@selector(getThemeInfoDone:)];
@@ -154,13 +155,27 @@ static RKNetworkRequestManager *_networkRequestManager;
     [queue addOperation:request];
 }
 
+- (void)getThemeInfoWithID:(NSString *)tid :(int)step {
+    [self checkQueue];
+    [Common cancelAllRequestWithQueue:queue];
+    NSURL *url = [NSURL URLWithString:GetThemeUrlStr];
+    ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    [request addPostValue:tid forKey:@"pid"];
+    [request addPostValue:[NSString stringWithFormat:@"%d", step] forKey:@"phase"];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(getThemeInfoDone:)];
+    [request setDidFailSelector:@selector(commonRequestQueryDataFailed:)];
+    request.timeOutSeconds = 10;
+    //    [request startAsynchronous];
+    [queue addOperation:request];
+}
+
 - (void)getThemeInfoDone: (ASIHTTPRequest *)request {
     @try {
 //        NSLog(@"%@", [Common operaterStr:[request responseString]]);
-//        NSDictionary *data = [[Common operaterStr:[request responseString]] JSONValue];
-        NSDictionary *data =[[request responseString]JSONValue];
-//        NSLog(@"%@", [request responseString]);
-//        NSDictionary *data = [[request responseString] JSONValue];
+        NSDictionary *data = [[Common operaterStr:[request responseString]] JSONValue];
         NSLog(@"%@", data);
         if ([[data valueForKey:@"status"] isEqualToString:@"0"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
@@ -316,6 +331,8 @@ static RKNetworkRequestManager *_networkRequestManager;
             NSLog(@"%@", [data valueForKey:@"msg"]);
 //            NSLog(@"%@", data);
             [[NSUserDefaults standardUserDefaults] setValue:[[data valueForKey:@"data"] valueForKey:@"SN_KEY"] forKey:@"SN_KEY"];
+            [[NSUserDefaults standardUserDefaults] setValue:[[[data valueForKey:@"data"] valueForKey:@"user"] valueForKey:@"nickname"] forKey:@"nickname"];
+            [[NSUserDefaults standardUserDefaults] setValue:[[[data valueForKey:@"data"] valueForKey:@"user"] valueForKey:@"avatar"] forKey:@"avatar"];
             [checkDelegate checkQueryData];
         }if ([[data valueForKey:@"status"] isEqualToString:@"1001"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
@@ -352,6 +369,8 @@ static RKNetworkRequestManager *_networkRequestManager;
             NSLog(@"%@", [data valueForKey:@"msg"]);
 //            NSLog(@"%@", data);
             [[NSUserDefaults standardUserDefaults] setValue:[[data valueForKey:@"data"] valueForKey:@"SN_KEY"] forKey:@"SN_KEY"];
+            [[NSUserDefaults standardUserDefaults] setValue:[[data valueForKey:@"data"] valueForKey:@"nickname"] forKey:@"nickname"];
+            [[NSUserDefaults standardUserDefaults] setValue:[[data valueForKey:@"data"] valueForKey:@"avatar"] forKey:@"avatar"];
             [checkDelegate checkQueryData];
         }if ([[data valueForKey:@"status"] isEqualToString:@"1001"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
@@ -442,10 +461,10 @@ static RKNetworkRequestManager *_networkRequestManager;
 
 - (void)getManagerListDone :(ASIHTTPRequest *)request {
     NSDictionary *data =[[Common operaterStr:[request responseString]] JSONValue];
-    NSLog(@"%@", data);
+//    NSLog(@"%@", data);
     if ([[data objectForKey:@"status"] intValue] ==0) {
         NSLog(@"%@", [data objectForKey:@"msg"]);
-        [getManagerListDelegate managerListQueryData:data];
+        [getManagerListDelegate managerListQueryData:[data objectForKey:@"data"]];
     }
 }
 
@@ -472,6 +491,31 @@ static RKNetworkRequestManager *_networkRequestManager;
     request.didFailSelector = @selector(commonRequestQueryDataFailed:);
     request.timeOutSeconds = 10;
 //    [request startAsynchronous];
+    [queue addOperation:request];
+    
+    
+}
+
+- (void)sharedTheme:(NSString *)imageFile :(NSString *)mp3File :(int)step :(NSString *)tid {
+    NSString *imgPath =[Common pathForImage:imageFile];
+    NSString *mp3Path =[Common pathForVoice:mp3File];
+    
+    [self checkQueue];
+    [Common cancelAllRequestWithQueue:queue];
+    
+    
+    ASIFormDataRequest *request =[self initRequestWithfile:imgPath fileName:imageFile ContentType:@"image/png" Key:@"pic_file" Url:SharedUploadUrlStr];
+    [request addFile:mp3Path withFileName:mp3File andContentType:@"audio/aac" forKey:@"voice_file"];
+    [request addPostValue:@"1" forKey:@"type"];
+    [request addPostValue:tid forKey:@"pid"];
+    [request addPostValue:[NSString stringWithFormat:@"%d", step] forKey:@"phase"];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    [request addPostValue:@"helloWorld" forKey:@"content"];
+    [request setDelegate:self];
+    request.didFinishSelector =@selector(sharedThemeDone:);
+    request.didFailSelector = @selector(commonRequestQueryDataFailed:);
+    request.timeOutSeconds = 10;
     [queue addOperation:request];
     
     

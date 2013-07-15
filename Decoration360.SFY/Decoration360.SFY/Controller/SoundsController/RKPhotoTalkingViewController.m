@@ -36,6 +36,10 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNum) name:@"ADDREQUESTNUM" object:nil];
     
+    if (_type ==PROJECT) {
+        [self setProjectUI];
+    }
+    
     [_tableView setHidden:YES];
     
     // Do any additional setup after loading the view from its nib.
@@ -222,6 +226,11 @@
     [Common cancelAllRequestOfAllQueue];
     if ([Common isLogined]) {
         RKtakingPhotoViewController *tpvCtr =[[RKtakingPhotoViewController alloc]init];
+        if (_type ==PROJECT) {
+            tpvCtr.type =PROJECT;
+            tpvCtr.tid =_tid;
+            tpvCtr.step =_step;
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:tpvCtr];
         [tpvCtr release];
     }else {
@@ -308,12 +317,12 @@
         [cell.commit_content_3 setHidden:YES];
         [cell.commentPlayBtn_3 setHidden:YES];
         [cell.nextBtn setHidden:YES];
-        cell.moreBtn.frame =CGRectMake(0.0f, 263.0f, 320.0f, 20.0f);
+        cell.moreBtn.frame =CGRectMake(0.0f, 421.0f, 320.0f, 20.0f);
         
         if (num >0) {
             NSDictionary *commentDict =[commentArray objectAtIndex:0];
             [cell.commit_icon_1 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];     
-            cell.moreBtn.frame =CGRectMake(0.0f, 326.0f, 320.0f, 20.0f);
+            cell.moreBtn.frame =CGRectMake(0.0f, 484.0f, 320.0f, 20.0f);
             NSString *contentText =[commentDict objectForKey:@"content"];
             NSString *contentID =[commentDict objectForKey:@"uid"];
             if (contentText.length !=0) {
@@ -330,7 +339,7 @@
         if (num >1) {
             NSDictionary *commentDict =[commentArray objectAtIndex:1];
             [cell.commit_icon_2 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
-            cell.moreBtn.frame =CGRectMake(0.0f, 405.0f, 320.0f, 20.0f);
+            cell.moreBtn.frame =CGRectMake(0.0f, 563.0f, 320.0f, 20.0f);
             NSString *contentText =[commentDict objectForKey:@"content"];
             NSString *contentID =[commentDict objectForKey:@"uid"];
             if (contentText.length !=0) {
@@ -347,7 +356,7 @@
         if (num >2){
             NSDictionary *commentDict =[commentArray objectAtIndex:2];
             [cell.commit_icon_3 setImageWithURL:[NSURL URLWithString:[commentDict objectForKey:@"pic_url"]] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
-            cell.moreBtn.frame =CGRectMake(0.0f, 482.0f, 320.0f, 20.0f);
+            cell.moreBtn.frame =CGRectMake(0.0f, 620.0f, 320.0f, 20.0f);
             NSString *contentText =[commentDict objectForKey:@"content"];
             NSString *contentID =[commentDict objectForKey:@"uid"];
             if (contentText.length !=0) {
@@ -386,7 +395,7 @@
         if (indexPath.row == indexNum) {
             return 24.0f;
         }else {
-            return 502.0f;
+            return 640.0f;
         }
     }
 }
@@ -465,37 +474,17 @@
 //    NSLog(@"commit_array:%@", _commitArray);
 //    [self setup:_countNum];
     [_tableView setHidden:NO];
+    
     [_tableView reloadData];
     [self doneLoadingTableViewData];
 }
 
-//-(void)downloadThemePicData:(UIImage *)pic :(int)num {
-//    self.pic =pic;
-//    [self setupCommitView:num];
-//    
-//}
-//
-//-(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 :(int)num {
-//    self.pic =pic;
-//    self.icon_1 =icon_1;
-//    [self setupCommitView:num];
-//}
-//
-//-(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 :(int)num {
-//    self.pic =pic;
-//    self.icon_1 =icon_1;
-//    self.icon_2 =icon_2;
-//    [self setupCommitView:num];
-//}
-//
-//-(void)downloadThemePicData:(UIImage *)pic iocn_1:(UIImage *)icon_1 iocn_2:(UIImage *)icon_2 iocn_3:(UIImage *)icon_3 :(int)num {
-//    self.pic =pic;
-//    self.icon_1 =icon_1;
-//    self.icon_2 =icon_2;
-//    self.icon_3 =icon_3;
-//    [self setupCommitView:num];
-//}
-
+- (void)setProjectUI{
+    [_tableView setFrame:CGRectMake(0.0f, 88.0f, 320.0f, 416.0f)];
+    RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
+    manager.getThemeInformationDelegate =self;
+    [manager getThemeInfoWithID:_tid :_step];
+}
 
 
 @end

@@ -27,7 +27,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSURL *url =[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:@"avatar"]];
+    [self.iconImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
+    self.nameLabel.text =[[NSUserDefaults standardUserDefaults] valueForKey:@"nickname"];
+    
     NSBundle *bundle = [NSBundle mainBundle];
+    
 	NSString *plistPath = [bundle pathForResource:@"area" ofType:@"plist"];
 	areaDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     
@@ -69,6 +74,17 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    keyBoardController=[[UIKeyboardViewController alloc] initWithControllerDelegate:self];
+	[keyBoardController addToolbarToKeyboard];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [keyBoardController release];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -82,6 +98,9 @@
     [_roadText release];
     [_numberText release];
     [_iconImage release];
+    [_provinceBtn release];
+    [_cityBtn release];
+    [_siteBtn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -91,15 +110,185 @@
     [self setRoadText:nil];
     [self setNumberText:nil];
     [self setIconImage:nil];
+    [self setProvinceBtn:nil];
+    [self setCityBtn:nil];
+    [self setSiteBtn:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - UIKeyboardViewController delegate methods
+
+- (void)alttextFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"%@", textField.text);
+}
+
+- (void)alttextViewDidEndEditing:(UITextView *)textView {
+    NSLog(@"%@", textView.text);
+}
+
+#pragma mark - UIPickerDelegate
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    switch (level) {
+        case PROVINCE:
+            return [province count];
+            break;
+        case CITY:
+            return [city count];
+            break;
+        case SITE:
+            return [district count];
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (level == PROVINCE) {
+        return [province objectAtIndex: row];
+    }
+    else if (level == CITY &&_provinceBtn.titleLabel.text.length !=0) {
+        return [city objectAtIndex: row];
+    }
+    else if (level == SITE &&_cityBtn.titleLabel.text.length !=0){
+        return [district objectAtIndex: row];
+    }else {
+        return 0;
+    }
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if (level ==PROVINCE) {
+        _provinceBtn.titleLabel.text =[province objectAtIndex:row];
+        
+        selectedProvince = [province objectAtIndex: row];
+        NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: [NSString stringWithFormat:@"%d", row]]];
+        NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
+        NSArray *cityArray = [dic allKeys];
+        NSArray *sortedArray = [cityArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+            
+            if ([obj1 integerValue] > [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedDescending;//递减
+            }
+            
+            if ([obj1 integerValue] < [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedAscending;//上升
+            }
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+        
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        for (int i=0; i<[sortedArray count]; i++) {
+            NSString *index = [sortedArray objectAtIndex:i];
+            NSArray *temp = [[dic objectForKey: index] allKeys];
+            [array addObject: [temp objectAtIndex:0]];
+        }
+        
+        [city release];
+        city = [[NSArray alloc] initWithArray: array];
+        [array release];
+        [district release];
+        NSDictionary *cityDic = [dic objectForKey: [sortedArray objectAtIndex: 0]];
+        district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [city objectAtIndex: 0]]];
+        
+    }else if (level ==CITY) {
+        _cityBtn.titleLabel.text =[city objectAtIndex:row];
+        
+        NSString *provinceIndex = [NSString stringWithFormat: @"%d", [province indexOfObject: selectedProvince]];
+        NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: provinceIndex]];
+        NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
+        NSArray *dicKeyArray = [dic allKeys];
+        NSArray *sortedArray = [dicKeyArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+            
+            if ([obj1 integerValue] > [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            
+            if ([obj1 integerValue] < [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+        
+        NSDictionary *cityDic = [NSDictionary dictionaryWithDictionary: [dic objectForKey: [sortedArray objectAtIndex: row]]];
+        NSArray *cityKeyArray = [cityDic allKeys];
+        
+        [district release];
+        district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [cityKeyArray objectAtIndex:0]]];
+    }else {
+        _siteBtn.titleLabel.text =[district objectAtIndex:row];
+    }
+}
+
+- (void)settingToolBar {
+    _toolbar =[[UIToolbar alloc]initWithFrame:CGRectMake(0, 278, 320, 30)];
+    UIBarButtonItem *doneBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"完 成", @"")
+                                                                    style:UIBarButtonItemStyleDone
+                                                                   target:self
+                                                                   action:@selector(ButtonTap)];
+    [_toolbar setItems:[NSArray arrayWithObject:doneBarItem]];
+    [doneBarItem release];
+    [self.view addSubview:_toolbar];
+}
+
+- (void)ButtonTap  {
+    [_toolbar removeFromSuperview];
+    [picker removeFromSuperview];
+    [picker release];
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UILabel *myView = nil;
+    myView = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 78, 30)] autorelease];
+    myView.textAlignment = UITextAlignmentCenter;
+    myView.text = [province objectAtIndex:row];
+    myView.font = [UIFont systemFontOfSize:14];
+    myView.backgroundColor = [UIColor clearColor];
+    return myView;
+}
+
+#pragma mark - buttonAction
 - (IBAction)provinceBtnPressed:(id)sender {
+    [self settingToolBar];
+    level =PROVINCE;
+    picker =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 308, 320, 240)];
+    picker.delegate =self;
+    picker.dataSource =self;
+    picker.showsSelectionIndicator = YES;
+    [picker selectRow: 0 inComponent: 0 animated: YES];
     
+    
+    [self.view addSubview:picker];
 }
 
 - (IBAction)cityBtnPressed:(id)sender {
+    [self settingToolBar];
+    level =CITY;
+    picker =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 308, 320, 240)];
+    picker.delegate =self;
+    picker.dataSource =self;
+    picker.showsSelectionIndicator = YES;
+    [picker selectRow: 0 inComponent: 0 animated: YES];
+    
+    [self.view addSubview:picker];
 }
 
 - (IBAction)siteBtnPressed:(id)sender {
+    [self settingToolBar];
+    level =SITE;
+    picker =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 308, 320, 240)];
+    picker.delegate =self;
+    picker.dataSource =self;
+    picker.showsSelectionIndicator = YES;
+    [picker selectRow: 0 inComponent: 0 animated: YES];
+    
+    [self.view addSubview:picker];
 }
+
 @end

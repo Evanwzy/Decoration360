@@ -40,4 +40,5 @@
 + (BOOL)requestExistsWithQueue:(ASINetworkQueue *)queue WithDictionary:(NSDictionary *)dictionary;
 + (void)cancelAllRequestOfAllQueue;
 
+
 @end

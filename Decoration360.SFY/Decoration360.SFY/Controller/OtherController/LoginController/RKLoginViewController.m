@@ -62,7 +62,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma - UIKeyboardViewController delegate methods
+#pragma mark - UIKeyboardViewController delegate methods
 
 - (void)alttextFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"%@", textField.text);
@@ -72,7 +72,7 @@
     NSLog(@"%@", textView.text);
 }
 
-#pragma - dataDelegate
+#pragma mark - dataDelegate
 
 -(void)checkQueryData {
     _accountText.text =@"";

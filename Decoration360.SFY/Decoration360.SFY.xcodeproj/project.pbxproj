@@ -37,8 +37,6 @@
 		6926BD3C1772C6D1002A9F19 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6926BD3B1772C6D1002A9F19 /* icon_default.png */; };
 		6926BD3F1772D501002A9F19 /* minuse_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6926BD3D1772D501002A9F19 /* minuse_icon.png */; };
 		6926BD401772D501002A9F19 /* plus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6926BD3E1772D501002A9F19 /* plus_icon.png */; };
-		6926BD4D1772E4D1002A9F19 /* RKCommitContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6926BD4C1772E4D0002A9F19 /* RKCommitContentView.m */; };
-		6926BD4F1772E4ED002A9F19 /* RKCommitContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6926BD4E1772E4ED002A9F19 /* RKCommitContentView.xib */; };
 		6926BD55177C1616002A9F19 /* RKCommitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6926BD54177C1615002A9F19 /* RKCommitTableViewCell.m */; };
 		6926BD59177C165E002A9F19 /* RKCommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6926BD58177C165E002A9F19 /* RKCommitTableViewCell.xib */; };
 		6926BD5D178167EF002A9F19 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6926BD5C178167EF002A9F19 /* EGORefreshTableHeaderView.m */; };
@@ -148,6 +146,8 @@
 		69FA519C176E9890003F77A5 /* RKCasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FA519A176E9890003F77A5 /* RKCasesViewController.m */; };
 		69FA519D176E9890003F77A5 /* RKCasesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FA519B176E9890003F77A5 /* RKCasesViewController.xib */; };
 		69FA51A1176E9CA5003F77A5 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FA51A0176E9CA5003F77A5 /* NIDropDown.m */; };
+		69FDFAA417939D33002BF8DF /* RKManagerListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FDFAA317939D33002BF8DF /* RKManagerListViewCell.m */; };
+		69FDFAA617939D47002BF8DF /* RKManagerListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FDFAA517939D47002BF8DF /* RKManagerListViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,9 +198,6 @@
 		6926BD3B1772C6D1002A9F19 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
 		6926BD3D1772D501002A9F19 /* minuse_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minuse_icon.png; sourceTree = "<group>"; };
 		6926BD3E1772D501002A9F19 /* plus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus_icon.png; sourceTree = "<group>"; };
-		6926BD4B1772E4D0002A9F19 /* RKCommitContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCommitContentView.h; sourceTree = "<group>"; };
-		6926BD4C1772E4D0002A9F19 /* RKCommitContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCommitContentView.m; sourceTree = "<group>"; };
-		6926BD4E1772E4ED002A9F19 /* RKCommitContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCommitContentView.xib; sourceTree = "<group>"; };
 		6926BD53177C1614002A9F19 /* RKCommitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCommitTableViewCell.h; sourceTree = "<group>"; };
 		6926BD54177C1615002A9F19 /* RKCommitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCommitTableViewCell.m; sourceTree = "<group>"; };
 		6926BD58177C165E002A9F19 /* RKCommitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCommitTableViewCell.xib; sourceTree = "<group>"; };
@@ -368,6 +365,9 @@
 		69FA519B176E9890003F77A5 /* RKCasesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCasesViewController.xib; sourceTree = "<group>"; };
 		69FA519F176E9CA5003F77A5 /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
 		69FA51A0176E9CA5003F77A5 /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
+		69FDFAA217939D33002BF8DF /* RKManagerListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKManagerListViewCell.h; sourceTree = "<group>"; };
+		69FDFAA317939D33002BF8DF /* RKManagerListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKManagerListViewCell.m; sourceTree = "<group>"; };
+		69FDFAA517939D47002BF8DF /* RKManagerListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKManagerListViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -504,6 +504,9 @@
 				69356CE0178FAB6200808097 /* RKManagerListViewController.h */,
 				69356CE1178FAB6200808097 /* RKManagerListViewController.m */,
 				69356CE2178FAB6200808097 /* RKManagerListViewController.xib */,
+				69FDFAA217939D33002BF8DF /* RKManagerListViewCell.h */,
+				69FDFAA317939D33002BF8DF /* RKManagerListViewCell.m */,
+				69FDFAA517939D47002BF8DF /* RKManagerListViewCell.xib */,
 			);
 			path = CaseListController;
 			sourceTree = "<group>";
@@ -811,9 +814,6 @@
 				6926BD53177C1614002A9F19 /* RKCommitTableViewCell.h */,
 				6926BD54177C1615002A9F19 /* RKCommitTableViewCell.m */,
 				6926BD58177C165E002A9F19 /* RKCommitTableViewCell.xib */,
-				6926BD4B1772E4D0002A9F19 /* RKCommitContentView.h */,
-				6926BD4C1772E4D0002A9F19 /* RKCommitContentView.m */,
-				6926BD4E1772E4ED002A9F19 /* RKCommitContentView.xib */,
 				6981783A176EAC4E00D5EAD3 /* RKPhotoTalkingViewController.h */,
 				6981783B176EAC4E00D5EAD3 /* RKPhotoTalkingViewController.m */,
 				6981783C176EAC4E00D5EAD3 /* RKPhotoTalkingViewController.xib */,
@@ -1039,7 +1039,6 @@
 				6926BD3C1772C6D1002A9F19 /* icon_default.png in Resources */,
 				6926BD3F1772D501002A9F19 /* minuse_icon.png in Resources */,
 				6926BD401772D501002A9F19 /* plus_icon.png in Resources */,
-				6926BD4F1772E4ED002A9F19 /* RKCommitContentView.xib in Resources */,
 				6926BD59177C165E002A9F19 /* RKCommitTableViewCell.xib in Resources */,
 				6926BD63178175B0002A9F19 /* RKContentViewController.xib in Resources */,
 				6926BD6817827625002A9F19 /* RKContentTableViewCell.xib in Resources */,
@@ -1059,6 +1058,7 @@
 				69356CE4178FAB6200808097 /* RKManagerListViewController.xib in Resources */,
 				69356CEA178FB61500808097 /* RKNewCaseViewController.xib in Resources */,
 				69356CEC178FDFCD00808097 /* area.plist in Resources */,
+				69FDFAA617939D47002BF8DF /* RKManagerListViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,7 +1109,6 @@
 				69DA99CE1771B00100C5B208 /* UIKeyboardView.m in Sources */,
 				69DA99CF1771B00100C5B208 /* UIKeyboardViewController.m in Sources */,
 				6926BD381772BE14002A9F19 /* RKshareThemeViewController.m in Sources */,
-				6926BD4D1772E4D1002A9F19 /* RKCommitContentView.m in Sources */,
 				6926BD55177C1616002A9F19 /* RKCommitTableViewCell.m in Sources */,
 				6926BD5D178167EF002A9F19 /* EGORefreshTableHeaderView.m in Sources */,
 				6926BD62178175B0002A9F19 /* RKContentViewController.m in Sources */,
@@ -1135,6 +1134,7 @@
 				69356CDC178F94A400808097 /* RKDesignerViewController.m in Sources */,
 				69356CE3178FAB6200808097 /* RKManagerListViewController.m in Sources */,
 				69356CE9178FB61500808097 /* RKNewCaseViewController.m in Sources */,
+				69FDFAA417939D33002BF8DF /* RKManagerListViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

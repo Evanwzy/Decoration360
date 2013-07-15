@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "RKNetworkRequestManager.h"
 
-@interface RKManagerListViewController : UIViewController<RKRequestManagerManagerListDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface RKManagerListViewController : UIViewController<RKRequestManagerManagerListDelegate, UITableViewDelegate, UITableViewDataSource>
 @property int num;
 @property (nonatomic, retain) UITableView *tableView;
 
+@property (nonatomic, retain) NSArray *dataArray;
+
+- (IBAction)newBtnPressed:(id)sender;
+- (IBAction)backBtn:(id)sender;
 @end

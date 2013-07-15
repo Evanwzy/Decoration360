@@ -14,6 +14,10 @@
 @property (retain, nonatomic) NSString *imageFile;
 @property (retain ,nonatomic  ) NSString *mp3File;
 
+@property int type;
+@property int step;
+@property (retain, nonatomic) NSString *tid;
+
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
 - (IBAction)sharedBtnPressed:(id)sender;

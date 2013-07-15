@@ -95,6 +95,7 @@
 
 //uploadData
 - (void)sharedTheme:(NSString *)imageFile :(NSString *)mp3File;
+- (void)sharedTheme:(NSString *)imageFile :(NSString *)mp3File :(int)step :(NSString *)tid;
 - (void)answerTheme:(NSString *)textContent :(NSString *)mp3File :(NSString *)tid;
 - (void)loginIn:(NSString *)account :(NSString *)password;
 - (void)registerID:(NSString *)account :(NSString *)password;
@@ -108,6 +109,7 @@
 - (void)getCompanyInfo;
 - (void)getActivityInfo;
 - (void)getThemeInfoFrom:(NSString *)startNum To:(NSString *)endNum;
+- (void)getThemeInfoWithID:(NSString *)tid :(int)step;
 - (void)getExporterInfoWithAppID;
 - (void)getManagerList;
 - (void)getContentInfo:(NSString *)tid :(NSString *)startNum :(NSString *)endNum;
@@ -206,6 +208,6 @@
 
 @protocol RKRequestManagerManagerListDelegate <NSObject>
 
-- (void)managerListQueryData :(NSDictionary *)dict;
+- (void)managerListQueryData :(NSArray *)arr;
 
 @end

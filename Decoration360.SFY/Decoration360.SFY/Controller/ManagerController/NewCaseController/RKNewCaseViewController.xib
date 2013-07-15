@@ -165,7 +165,6 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">省</string>
 						<reference key="IBUIHighlightedTitleColor" ref="266312825"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -187,7 +186,6 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">市</string>
 						<reference key="IBUIHighlightedTitleColor" ref="266312825"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -209,7 +207,6 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">区</string>
 						<reference key="IBUIHighlightedTitleColor" ref="266312825"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -508,7 +505,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">风格：</string>
+						<string key="IBUIText">面积：</string>
 						<reference key="IBUITextColor" ref="990466085"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -665,6 +662,30 @@
 					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">provinceBtn</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="677920277"/>
+					</object>
+					<int key="connectionID">42</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cityBtn</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="631401469"/>
+					</object>
+					<int key="connectionID">43</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">siteBtn</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="62520191"/>
+					</object>
+					<int key="connectionID">44</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">provinceBtnPressed:</string>
 						<reference key="source" ref="677920277"/>
@@ -707,7 +728,6 @@
 							<reference ref="517144267"/>
 							<reference ref="548125730"/>
 							<reference ref="367289611"/>
-							<reference ref="677920277"/>
 							<reference ref="768974403"/>
 							<reference ref="27917620"/>
 							<reference ref="801313541"/>
@@ -722,12 +742,13 @@
 							<reference ref="202204552"/>
 							<reference ref="188505893"/>
 							<reference ref="550416150"/>
-							<reference ref="631401469"/>
 							<reference ref="1025170534"/>
 							<reference ref="540254649"/>
-							<reference ref="62520191"/>
 							<reference ref="460936175"/>
 							<reference ref="407540174"/>
+							<reference ref="677920277"/>
+							<reference ref="631401469"/>
+							<reference ref="62520191"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -899,7 +920,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">41</int>
+			<int key="maxID">44</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

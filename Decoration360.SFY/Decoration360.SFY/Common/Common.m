@@ -50,8 +50,8 @@
 }
 
 + (NSString *)operaterStr:(NSString *)str {
-//    return [str substringFromIndex:3];
-    return str;
+    return [str substringFromIndex:3];
+//    return str;
 }
 
 +(NSString *)getKey {
@@ -211,5 +211,7 @@
 //    
 //    [[NSNotificationCenter defaultCenter] postNotification:notification];
 //}
+
+
 
 @end

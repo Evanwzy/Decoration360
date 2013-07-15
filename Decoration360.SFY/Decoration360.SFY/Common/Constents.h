@@ -16,7 +16,8 @@
 
 //test URL
 //#define SERVER_URL @"http://yijianli.com/apps"
-#define SERVER_URL @"http://192.168.1.106/apps"
+#define SERVER_URL @"http://yijianli.cn/apps"
+//#define SERVER_URL @"http://192.168.1.106/apps"
 
 #pragma mark - upload URL_Adrr
 #define SharedUploadUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiTopic/add", SERVER_URL]

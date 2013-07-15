@@ -12,6 +12,11 @@
 
 @property (retain, nonatomic) UIView *popView;
 @property (retain, nonatomic) UIImage *image;
+
+@property int type;
+@property int step;
+@property (retain, nonatomic) NSString *tid;
+
 @property (retain, nonatomic) IBOutlet UIButton *takePhotoBtn;
 @property (retain, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (retain, nonatomic) IBOutlet UIButton *photoBtn;
