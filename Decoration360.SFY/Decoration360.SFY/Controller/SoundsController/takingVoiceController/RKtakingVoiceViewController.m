@@ -200,8 +200,8 @@
     stvCtr.imageFile =_imageFile;
     if (_type ==PROJECT) {
         stvCtr.type =PROJECT;
-        stvCtr.tid =_tid;
         stvCtr.step =_step;
+        stvCtr.tid =_tid;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:stvCtr];
 }

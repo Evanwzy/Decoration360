@@ -480,11 +480,164 @@
 }
 
 - (void)setProjectUI{
+    _stepBtn_1 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _stepBtn_1.tag =1;
+    _stepBtn_1.frame =CGRectMake(1.0f, 44.0f, 53.0f, 44.0f);
+    [_stepBtn_1 setTitle:@"隐蔽" forState:UIControlStateNormal];
+    [_stepBtn_1 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _stepBtn_2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _stepBtn_2.tag =2;
+    _stepBtn_2.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    [_stepBtn_2 setTitle:@"泥木" forState:UIControlStateNormal];
+    [_stepBtn_2 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _stepBtn_3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _stepBtn_3.tag =3;
+    _stepBtn_3.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    [_stepBtn_3 setTitle:@"油漆" forState:UIControlStateNormal];
+    [_stepBtn_3 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _stepBtn_4 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _stepBtn_4.tag =4;
+    _stepBtn_4.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    [_stepBtn_4 setTitle:@"安装" forState:UIControlStateNormal];
+    [_stepBtn_4 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _stepBtn_5 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _stepBtn_5.tag =5;
+    _stepBtn_5.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    [_stepBtn_5 setTitle:@"竣工" forState:UIControlStateNormal];
+    [_stepBtn_5 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _stepBtn_6 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _stepBtn_6.tag =6;
+    _stepBtn_6.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    [_stepBtn_6 setTitle:@"软装" forState:UIControlStateNormal];
+    [_stepBtn_6 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _stepBtn_1.selected =YES;
+    _stepBtn_1.userInteractionEnabled =NO;
+    
+    [self.view addSubview:_stepBtn_1];
+    [self.view addSubview:_stepBtn_2];
+    [self.view addSubview:_stepBtn_3];
+    [self.view addSubview:_stepBtn_4];
+    [self.view addSubview:_stepBtn_5];
+    [self.view addSubview:_stepBtn_6];
+    
+    [self requestQuery];
+}
+
+- (void)stepBtnAction :(id)sender {
+    UIButton *button =sender;
+    switch (button.tag) {
+        case 1:
+            _step =1;
+            _stepBtn_1.selected =YES;
+            _stepBtn_1.userInteractionEnabled =NO;
+            _stepBtn_2.selected =NO;
+            _stepBtn_2.userInteractionEnabled =YES;
+            _stepBtn_3.selected =NO;
+            _stepBtn_3.userInteractionEnabled =YES;
+            _stepBtn_4.selected =NO;
+            _stepBtn_4.userInteractionEnabled =YES;
+            _stepBtn_5.selected =NO;
+            _stepBtn_5.userInteractionEnabled =YES;
+            _stepBtn_6.selected =NO;
+            _stepBtn_6.userInteractionEnabled =YES;
+            [self requestQuery];
+            break;
+        case 2:
+            _step =2;
+            _stepBtn_1.selected =NO;
+            _stepBtn_1.userInteractionEnabled =YES;
+            _stepBtn_2.selected =YES;
+            _stepBtn_2.userInteractionEnabled =NO;
+            _stepBtn_3.selected =NO;
+            _stepBtn_3.userInteractionEnabled =YES;
+            _stepBtn_4.selected =NO;
+            _stepBtn_4.userInteractionEnabled =YES;
+            _stepBtn_5.selected =NO;
+            _stepBtn_5.userInteractionEnabled =YES;
+            _stepBtn_6.selected =NO;
+            _stepBtn_6.userInteractionEnabled =YES;
+            [self requestQuery];
+            break;
+        case 3:
+            _step =3;
+            _stepBtn_1.selected =NO;
+            _stepBtn_1.userInteractionEnabled =YES;
+            _stepBtn_2.selected =NO;
+            _stepBtn_2.userInteractionEnabled =YES;
+            _stepBtn_3.selected =YES;
+            _stepBtn_3.userInteractionEnabled =NO;
+            _stepBtn_4.selected =NO;
+            _stepBtn_4.userInteractionEnabled =YES;
+            _stepBtn_5.selected =NO;
+            _stepBtn_5.userInteractionEnabled =YES;
+            _stepBtn_6.selected =NO;
+            _stepBtn_6.userInteractionEnabled =YES;
+            [self requestQuery];
+            break;
+        case 4:
+            _step =4;
+            _stepBtn_1.selected =NO;
+            _stepBtn_1.userInteractionEnabled =YES;
+            _stepBtn_2.selected =NO;
+            _stepBtn_2.userInteractionEnabled =YES;
+            _stepBtn_3.selected =NO;
+            _stepBtn_3.userInteractionEnabled =YES;
+            _stepBtn_4.selected =YES;
+            _stepBtn_4.userInteractionEnabled =NO;
+            _stepBtn_5.selected =NO;
+            _stepBtn_5.userInteractionEnabled =YES;
+            _stepBtn_6.selected =NO;
+            _stepBtn_6.userInteractionEnabled =YES;
+            [self requestQuery];
+            break;
+        case 5:
+            _step =5;
+            _stepBtn_1.selected =NO;
+            _stepBtn_1.userInteractionEnabled =YES;
+            _stepBtn_2.selected =NO;
+            _stepBtn_2.userInteractionEnabled =YES;
+            _stepBtn_3.selected =NO;
+            _stepBtn_3.userInteractionEnabled =YES;
+            _stepBtn_4.selected =NO;
+            _stepBtn_4.userInteractionEnabled =YES;
+            _stepBtn_5.selected =YES;
+            _stepBtn_5.userInteractionEnabled =NO;
+            _stepBtn_6.selected =NO;
+            _stepBtn_6.userInteractionEnabled =YES;
+            [self requestQuery];
+            break;
+        case 6:
+            _step =6;
+            _stepBtn_1.selected =NO;
+            _stepBtn_1.userInteractionEnabled =YES;
+            _stepBtn_2.selected =NO;
+            _stepBtn_2.userInteractionEnabled =YES;
+            _stepBtn_3.selected =NO;
+            _stepBtn_3.userInteractionEnabled =YES;
+            _stepBtn_4.selected =NO;
+            _stepBtn_4.userInteractionEnabled =YES;
+            _stepBtn_5.selected =NO;
+            _stepBtn_5.userInteractionEnabled =YES;
+            _stepBtn_6.selected =YES;
+            _stepBtn_6.userInteractionEnabled =NO;
+            [self requestQuery];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)requestQuery {
     [_tableView setFrame:CGRectMake(0.0f, 88.0f, 320.0f, 416.0f)];
     RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
     manager.getThemeInformationDelegate =self;
     [manager getThemeInfoWithID:_tid :_step];
 }
-
 
 @end

@@ -41,6 +41,13 @@ typedef NS_ENUM(NSInteger, Step){
 @property (retain, nonatomic)UIImageView *imgView;
 @property (retain, nonatomic)UIView *contentView;
 
+@property (retain, nonatomic)UIButton *stepBtn_1;
+@property (retain, nonatomic)UIButton *stepBtn_2;
+@property (retain, nonatomic)UIButton *stepBtn_3;
+@property (retain, nonatomic)UIButton *stepBtn_4;
+@property (retain, nonatomic)UIButton *stepBtn_5;
+@property (retain, nonatomic)UIButton *stepBtn_6;
+
 @property (retain, nonatomic)NSArray *commitArray;
 @property (retain, nonatomic)NSString *commitContent_1;
 @property (retain, nonatomic)NSString *commitContent_2;

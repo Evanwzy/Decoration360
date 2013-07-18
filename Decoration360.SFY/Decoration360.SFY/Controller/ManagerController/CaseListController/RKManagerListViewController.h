@@ -14,6 +14,7 @@
 @property (nonatomic, retain) UITableView *tableView;
 
 @property (nonatomic, retain) NSArray *dataArray;
+- (IBAction)stepBtn:(id)sender;
 
 - (IBAction)newBtnPressed:(id)sender;
 - (IBAction)backBtn:(id)sender;

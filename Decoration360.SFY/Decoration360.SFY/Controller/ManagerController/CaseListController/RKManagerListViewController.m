@@ -42,6 +42,10 @@
 -(void)viewWillAppear:(BOOL)animated {
     [Common cancelAllRequestOfAllQueue];
     
+    [self requestData:0];
+}
+
+- (void)requestData :(int)stepNum {
     RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
     manager.getManagerListDelegate =self;
     [manager getManagerList];
@@ -69,6 +73,7 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
+
 - (IBAction)newBtnPressed:(id)sender {
     RKNewCaseViewController *nvCtr=[[RKNewCaseViewController alloc]init];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:nvCtr];

@@ -143,6 +143,8 @@
 		69DA99C81771ADF000C5B208 /* RKLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69DA99C61771ADF000C5B208 /* RKLoginViewController.xib */; };
 		69DA99CE1771B00100C5B208 /* UIKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DA99CB1771B00100C5B208 /* UIKeyboardView.m */; };
 		69DA99CF1771B00100C5B208 /* UIKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DA99CD1771B00100C5B208 /* UIKeyboardViewController.m */; };
+		69E3F2F91794D57F00C6A346 /* RKDesignerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E3F2F81794D57F00C6A346 /* RKDesignerViewCell.m */; };
+		69E3F2FB1794D5A400C6A346 /* RKDesignerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69E3F2FA1794D5A400C6A346 /* RKDesignerViewCell.xib */; };
 		69FA519C176E9890003F77A5 /* RKCasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FA519A176E9890003F77A5 /* RKCasesViewController.m */; };
 		69FA519D176E9890003F77A5 /* RKCasesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FA519B176E9890003F77A5 /* RKCasesViewController.xib */; };
 		69FA51A1176E9CA5003F77A5 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FA51A0176E9CA5003F77A5 /* NIDropDown.m */; };
@@ -360,6 +362,9 @@
 		69DA99CB1771B00100C5B208 /* UIKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKeyboardView.m; sourceTree = "<group>"; };
 		69DA99CC1771B00100C5B208 /* UIKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKeyboardViewController.h; sourceTree = "<group>"; };
 		69DA99CD1771B00100C5B208 /* UIKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIKeyboardViewController.m; sourceTree = "<group>"; };
+		69E3F2F71794D57F00C6A346 /* RKDesignerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDesignerViewCell.h; sourceTree = "<group>"; };
+		69E3F2F81794D57F00C6A346 /* RKDesignerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDesignerViewCell.m; sourceTree = "<group>"; };
+		69E3F2FA1794D5A400C6A346 /* RKDesignerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKDesignerViewCell.xib; sourceTree = "<group>"; };
 		69FA5199176E9890003F77A5 /* RKCasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCasesViewController.h; sourceTree = "<group>"; };
 		69FA519A176E9890003F77A5 /* RKCasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCasesViewController.m; sourceTree = "<group>"; };
 		69FA519B176E9890003F77A5 /* RKCasesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCasesViewController.xib; sourceTree = "<group>"; };
@@ -485,6 +490,9 @@
 				69356CD9178F94A400808097 /* RKDesignerViewController.h */,
 				69356CDA178F94A400808097 /* RKDesignerViewController.m */,
 				69356CDB178F94A400808097 /* RKDesignerViewController.xib */,
+				69E3F2F71794D57F00C6A346 /* RKDesignerViewCell.h */,
+				69E3F2F81794D57F00C6A346 /* RKDesignerViewCell.m */,
+				69E3F2FA1794D5A400C6A346 /* RKDesignerViewCell.xib */,
 			);
 			path = DesignerController;
 			sourceTree = "<group>";
@@ -1059,6 +1067,7 @@
 				69356CEA178FB61500808097 /* RKNewCaseViewController.xib in Resources */,
 				69356CEC178FDFCD00808097 /* area.plist in Resources */,
 				69FDFAA617939D47002BF8DF /* RKManagerListViewCell.xib in Resources */,
+				69E3F2FB1794D5A400C6A346 /* RKDesignerViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1135,6 +1144,7 @@
 				69356CE3178FAB6200808097 /* RKManagerListViewController.m in Sources */,
 				69356CE9178FB61500808097 /* RKNewCaseViewController.m in Sources */,
 				69FDFAA417939D33002BF8DF /* RKManagerListViewCell.m in Sources */,
+				69E3F2F91794D57F00C6A346 /* RKDesignerViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
