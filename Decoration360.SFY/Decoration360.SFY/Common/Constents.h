@@ -35,5 +35,5 @@
 #define GetCaseInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCase/index", SERVER_URL]
 #define GetCompanyInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCompany/index", SERVER_URL]
 #define GetActivityInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/activeList", SERVER_URL]
-#define GetManagerList [NSString stringWithFormat:@"%@/index.php?s=/ApiProject/", SERVER_URL]
+#define GetManagerList [NSString stringWithFormat:@"%@/index.php?s=/ApiProject/index", SERVER_URL]
 

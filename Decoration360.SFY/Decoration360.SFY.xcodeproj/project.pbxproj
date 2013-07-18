@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		690610D4178E60CD002168AB /* RKCaseListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 690610D3178E60CD002168AB /* RKCaseListViewCell.m */; };
 		690610D6178E60E4002168AB /* RKCaseListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 690610D5178E60E4002168AB /* RKCaseListViewCell.xib */; };
+		691D8383179791B300C023AB /* RKCheckingDesignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 691D8381179791B300C023AB /* RKCheckingDesignerViewController.m */; };
+		691D8384179791B300C023AB /* RKCheckingDesignerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 691D8382179791B300C023AB /* RKCheckingDesignerViewController.xib */; };
 		6920AAEF178A66A700D805E4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6920AAEE178A66A700D805E4 /* MapKit.framework */; };
 		6920AB0E178A676100D805E4 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AAF2178A676100D805E4 /* MKAnnotationView+WebCache.m */; };
 		6920AB0F178A676100D805E4 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AAF4178A676100D805E4 /* NSData+GIF.m */; };
@@ -156,6 +158,9 @@
 		690610D2178E60CD002168AB /* RKCaseListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCaseListViewCell.h; sourceTree = "<group>"; };
 		690610D3178E60CD002168AB /* RKCaseListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCaseListViewCell.m; sourceTree = "<group>"; };
 		690610D5178E60E4002168AB /* RKCaseListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCaseListViewCell.xib; sourceTree = "<group>"; };
+		691D8380179791B300C023AB /* RKCheckingDesignerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCheckingDesignerViewController.h; sourceTree = "<group>"; };
+		691D8381179791B300C023AB /* RKCheckingDesignerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCheckingDesignerViewController.m; sourceTree = "<group>"; };
+		691D8382179791B300C023AB /* RKCheckingDesignerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCheckingDesignerViewController.xib; sourceTree = "<group>"; };
 		6920AAEE178A66A700D805E4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6920AAF1178A676100D805E4 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6920AAF2178A676100D805E4 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
@@ -877,6 +882,9 @@
 				6926BD351772BE14002A9F19 /* RKshareThemeViewController.h */,
 				6926BD361772BE14002A9F19 /* RKshareThemeViewController.m */,
 				6926BD371772BE14002A9F19 /* RKshareThemeViewController.xib */,
+				691D8380179791B300C023AB /* RKCheckingDesignerViewController.h */,
+				691D8381179791B300C023AB /* RKCheckingDesignerViewController.m */,
+				691D8382179791B300C023AB /* RKCheckingDesignerViewController.xib */,
 			);
 			path = sharedController;
 			sourceTree = "<group>";
@@ -1068,6 +1076,7 @@
 				69356CEC178FDFCD00808097 /* area.plist in Resources */,
 				69FDFAA617939D47002BF8DF /* RKManagerListViewCell.xib in Resources */,
 				69E3F2FB1794D5A400C6A346 /* RKDesignerViewCell.xib in Resources */,
+				691D8384179791B300C023AB /* RKCheckingDesignerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,6 +1154,7 @@
 				69356CE9178FB61500808097 /* RKNewCaseViewController.m in Sources */,
 				69FDFAA417939D33002BF8DF /* RKManagerListViewCell.m in Sources */,
 				69E3F2F91794D57F00C6A346 /* RKDesignerViewCell.m in Sources */,
+				691D8383179791B300C023AB /* RKCheckingDesignerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
