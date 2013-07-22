@@ -24,8 +24,10 @@
 @protocol RKRequestManagerExperterInfoDelegate;
 @protocol RKRequestManagerThemeInfoDelegate;
 @protocol RKRequestManagerManagerListDelegate;
+@protocol RKRequestManagerHomeDetailDelegate;
 
 @protocol RKRequestManagerDownloadThemePicDelegate;
+@protocol RKRequestManagerDownloadVoiceDelegate;
 
 @interface RKNetworkRequestManager : NSObject {
     ASINetworkQueue *queue;
@@ -48,8 +50,10 @@
     id<RKRequestManagerExperterInfoDelegate> getExperterInfoDelegate;
     id<RKRequestManagerThemeInfoDelegate> getThemeInformationDelegate;
     id<RKRequestManagerManagerListDelegate> getManagerListDelegate;
+    id<RKRequestManagerHomeDetailDelegate> getHomeDetailDelegate;
     
     id<RKRequestManagerDownloadThemePicDelegate> downloadThemePicDelegate;
+    id<RKRequestManagerDownloadVoiceDelegate>downloadVoiceDelegate;
 }
 
 @property (nonatomic, retain) ASINetworkQueue *queue;
@@ -70,9 +74,12 @@
 @property (nonatomic, assign) id<RKRequestManagerManagerListDelegate> getManagerListDelegate;
 @property (nonatomic,assign) id<RKRequestManagerExperterInfoDelegate> getExperterInfoDelegate;
 @property (nonatomic, assign) id<RKRequestManagerThemeInfoDelegate> getThemeInformationDelegate;
+@property (nonatomic, assign) id<RKRequestManagerHomeDetailDelegate> getHomeDetailDelegate;
 
 @property (nonatomic, assign) id<RKRequestManagerDownloadThemePicDelegate> downloadThemePicDelegate;
+@property (nonatomic, assign) id<RKRequestManagerDownloadVoiceDelegate>downloadVoiceDelegate;
 
+@property (nonatomic, retain)NSString *path;
 
 @property (nonatomic, retain)NSURL *picUrl;
 @property (nonatomic, retain)NSURL *iconUrl_1;
@@ -105,6 +112,7 @@
 
 //getData
 - (void)getHomeData;
+- (void)getHomeDetail;
 - (void)getCommitData;
 - (void)getCompanyInfo;
 - (void)getActivityInfo;
@@ -118,6 +126,8 @@
 
 //downLoadData
 - (void)downloadThemeWithPicUrl:(NSString *)url1 iconUrl_1:(NSString *)url2 iconUrl_2:(NSString *)url3 iconUrl_3:(NSString *)url4 andVoiceUrl:(NSString *)url5 Num:(int)commentNum;
+- (void)downloadVoiceWithUrl:(NSString *)url;
+
 @end
 
 #pragma protocol
@@ -209,5 +219,17 @@
 @protocol RKRequestManagerManagerListDelegate <NSObject>
 
 - (void)managerListQueryData :(NSArray *)arr;
+
+@end
+
+@protocol RKRequestManagerDownloadVoiceDelegate <NSObject>
+
+- (void)playVoice :(NSString *)path;
+
+@end
+
+@protocol RKRequestManagerHomeDetailDelegate <NSObject>
+
+- (void)gethomeQueryData :(NSDictionary *)dict;
 
 @end

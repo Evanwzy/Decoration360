@@ -43,9 +43,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [Common cancelAllRequestOfAllQueue];
-    RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
-    manager.homeDelegate =self;
     [self requestQueryData];
 }
 
@@ -57,7 +54,12 @@
 
 #pragma mark - requestQuery&Delegate
 - (void)requestQueryData {
-    [[RKNetworkRequestManager sharedManager] getHomeData];
+    [Common cancelAllRequestOfAllQueue];
+    RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
+    manager.homeDelegate =self;
+    manager.getHomeDetailDelegate =self;
+    [manager getHomeData];
+    [manager getHomeDetail];
 }
 
 - (void)homeQueryData:(NSMutableArray *)imageArray :(NSMutableArray *)titleArray :(NSMutableArray *)idArray{
@@ -196,7 +198,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 #pragma mark - UI
 - (void)setUI {
     
-    
     [_takingBtn setImage:[UIImage imageNamed:@"icon_takingphoto.png"] forState:UIControlStateNormal];
     [_otherBtn setImage:[UIImage imageNamed:@"icon_more.png"] forState:UIControlStateNormal];
     [_companyBtn setImage:[UIImage imageNamed:@"home_companyInfo.png"] forState:UIControlStateNormal];
@@ -290,6 +291,12 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:lvCtr];
     [lvCtr release];
 }
+
+-(void)gethomeQueryData:(NSDictionary *)dict {
+    [_caseBtn setTitle:[dict objectForKey:@"case"] forState:UIControlStateNormal];
+    [_designerBtn setTitle:[dict objectForKey:@"designer"] forState:UIControlStateNormal];
+}
+
 - (void)dealloc {
     [_bgImageView release];
     [_bottomImageView release];

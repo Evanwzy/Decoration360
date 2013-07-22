@@ -71,7 +71,15 @@
     NSString *selectedCity = [city objectAtIndex: 0];
     district = [[NSArray alloc] initWithArray: [cityDic objectForKey: selectedCity]];
     
+    picker =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 308, 320, 240)];
+    picker.delegate =self;
+    picker.dataSource =self;
+    picker.showsSelectionIndicator = YES;
+    [picker selectRow: 0 inComponent: 0 animated: YES];
     
+    
+    [self.view addSubview:picker];
+    [picker setHidden:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -164,7 +172,7 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (level ==PROVINCE) {
-        _provinceBtn.titleLabel.text =[province objectAtIndex:row];
+        [_provinceBtn setTitle:[province objectAtIndex:row] forState:UIControlStateNormal];
         
         selectedProvince = [province objectAtIndex: row];
         NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: [NSString stringWithFormat:@"%d", row]]];
@@ -197,7 +205,7 @@
         district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [city objectAtIndex: 0]]];
         
     }else if (level ==CITY) {
-        _cityBtn.titleLabel.text =[city objectAtIndex:row];
+        [_cityBtn setTitle:[city objectAtIndex:row] forState:UIControlStateNormal];
         
         NSString *provinceIndex = [NSString stringWithFormat: @"%d", [province indexOfObject: selectedProvince]];
         NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: provinceIndex]];
@@ -221,7 +229,7 @@
         [district release];
         district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [cityKeyArray objectAtIndex:0]]];
     }else {
-        _siteBtn.titleLabel.text =[district objectAtIndex:row];
+        [_siteBtn setTitle:[district objectAtIndex:row] forState:UIControlStateNormal];
     }
 }
 
@@ -238,16 +246,21 @@
 
 - (void)ButtonTap  {
     [_toolbar removeFromSuperview];
-    [picker removeFromSuperview];
-    [picker release];
+    [picker setHidden:YES];
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *myView = nil;
-    myView = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 78, 30)] autorelease];
+    myView = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, 30)] autorelease];
     myView.textAlignment = UITextAlignmentCenter;
-    myView.text = [province objectAtIndex:row];
+    if (level ==PROVINCE) {
+        myView.text = [province objectAtIndex:row];
+    }else if (level ==CITY) {
+        myView.text = [city objectAtIndex:row];
+    }else {
+        myView.text = [district objectAtIndex:row];
+    }
     myView.font = [UIFont systemFontOfSize:14];
     myView.backgroundColor = [UIColor clearColor];
     return myView;
@@ -257,38 +270,22 @@
 - (IBAction)provinceBtnPressed:(id)sender {
     [self settingToolBar];
     level =PROVINCE;
-    picker =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 308, 320, 240)];
-    picker.delegate =self;
-    picker.dataSource =self;
-    picker.showsSelectionIndicator = YES;
-    [picker selectRow: 0 inComponent: 0 animated: YES];
-    
-    
-    [self.view addSubview:picker];
+    [picker reloadAllComponents];
+    [picker setHidden:NO];
 }
 
 - (IBAction)cityBtnPressed:(id)sender {
     [self settingToolBar];
     level =CITY;
-    picker =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 308, 320, 240)];
-    picker.delegate =self;
-    picker.dataSource =self;
-    picker.showsSelectionIndicator = YES;
-    [picker selectRow: 0 inComponent: 0 animated: YES];
-    
-    [self.view addSubview:picker];
+    [picker reloadAllComponents];
+    [picker setHidden:NO];;
 }
 
 - (IBAction)siteBtnPressed:(id)sender {
     [self settingToolBar];
     level =SITE;
-    picker =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 308, 320, 240)];
-    picker.delegate =self;
-    picker.dataSource =self;
-    picker.showsSelectionIndicator = YES;
-    [picker selectRow: 0 inComponent: 0 animated: YES];
-    
-    [self.view addSubview:picker];
+    [picker reloadAllComponents];
+    [picker setHidden:NO];
 }
 
 @end

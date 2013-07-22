@@ -25,6 +25,7 @@
 
 #pragma mark - getData URL_Adrr
 #define HomeUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/index", SERVER_URL]
+#define HomeDeltailUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiTotal/index", SERVER_URL]
 #define CommitUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/index", SERVER_URL]
 #define RegisterUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiLogin/regist", SERVER_URL]
 #define LoginUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiLogin/login", SERVER_URL]

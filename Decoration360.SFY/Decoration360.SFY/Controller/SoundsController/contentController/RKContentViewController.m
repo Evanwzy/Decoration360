@@ -326,6 +326,7 @@
         }else {
             cell.contentText.text =[NSString stringWithFormat:@"%@: ", [commentDict objectForKey:@"uid"]];
             [cell.iconImageView setImageWithURL:[commentDict objectForKey:@"pic_url"] placeholderImage:[UIImage imageNamed:@"icon_default.png"]];
+            cell.playUrl =[commentDict objectForKey:@"voice_url"];
         }
         
         return cell;
@@ -346,7 +347,10 @@
 
 #pragma mark -cellAction
 - (void)themePlayBtnPressed {
-    
+    [Common cancelAllRequestOfAllQueue];
+    RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
+    manager.downloadVoiceDelegate =self;
+    [manager downloadVoiceWithUrl:_urlStr];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -356,5 +360,28 @@
         [lvCtr release];
     }
 }
+
+- (void)playVoice:(NSString *)path {
+    NSURL *url =[NSURL URLWithString:path];
+    [self voicePlay:url];
+}
+
+- (void)voicePlay:(NSURL *)url {
+    NSError *error;
+    audioPlayer=[[AVAudioPlayer alloc]initWithContentsOfURL:url
+                                                      error:&error];
+    
+    audioPlayer.volume=1;
+    if (error) {
+        NSLog(@"error:%@",[error description]);
+        return;
+    }
+    //准备播放
+    [audioPlayer prepareToPlay];
+    //播放
+    [audioPlayer play];
+}
+
+
 
 @end

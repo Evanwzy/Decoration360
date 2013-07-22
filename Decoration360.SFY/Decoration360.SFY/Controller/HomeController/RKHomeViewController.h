@@ -10,7 +10,7 @@
 //#import "AOScrollerView.h"
 #import "RKNetworkRequestManager.h"
 
-@interface RKHomeViewController : UIViewController < RKRequestManagerHomeDelegate, UIAlertViewDelegate> {
+@interface RKHomeViewController : UIViewController < RKRequestManagerHomeDelegate, UIAlertViewDelegate, RKRequestManagerHomeDetailDelegate> {
     IBOutlet UIScrollView *sv;
     UIPageControl *page;
     IBOutlet UIWebView *wb;

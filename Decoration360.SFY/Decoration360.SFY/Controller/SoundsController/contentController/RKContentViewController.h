@@ -12,15 +12,17 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface RKContentViewController : UIViewController<UIKeyboardViewControllerDelegate, AVAudioRecorderDelegate, RKRequestManagerContentDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+@interface RKContentViewController : UIViewController<UIKeyboardViewControllerDelegate, AVAudioRecorderDelegate, RKRequestManagerContentDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, RKRequestManagerDownloadVoiceDelegate> {
     UIKeyboardViewController *keyBoardController;
     AVAudioRecorder *recorder;
     NSTimer *timer;
     NSURL *urlPlay;
+    AVAudioPlayer *audioPlayer;
 }
 
-@property (retain, nonatomic)NSString *tid;
-@property (retain, nonatomic) UIImage *picImage;
+@property (retain, nonatomic) NSString *tid;
+@property (retain, nonatomic) UIImage  *picImage;
+@property (retain, nonatomic) NSString *urlStr;
 @property (nonatomic) BOOL isRecording;
 @property (retain, nonatomic) AVAudioPlayer *avPlay;
 @property (retain, nonatomic) NSString *mp3File;

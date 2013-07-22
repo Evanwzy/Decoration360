@@ -18,7 +18,7 @@
 
 @synthesize queue;
 @synthesize singleQueue;
-@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate, activityDelegate, getManagerListDelegate;
+@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate, activityDelegate, getManagerListDelegate, downloadVoiceDelegate, getHomeDetailDelegate;
 #pragma - singleton
 
 static RKNetworkRequestManager *_networkRequestManager;
@@ -466,6 +466,46 @@ static RKNetworkRequestManager *_networkRequestManager;
         NSLog(@"%@", [data objectForKey:@"msg"]);
         [getManagerListDelegate managerListQueryData:[data objectForKey:@"data"]];
     }
+}
+
+- (void)getHomeDetail {
+    [self checkQueue];
+    NSURL *url =[NSURL URLWithString:HomeDeltailUrlStr];
+    ASIFormDataRequest *request =[ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:APP_ID forKey:@"company"];
+    request.delegate =self;
+    request.didFinishSelector =@selector(getHomeDetailDone:);
+    request.didFailSelector =@selector(commonRequestQueryDataFailed:);
+    request.timeOutSeconds =10.0f;
+    
+    [queue addOperation:request];
+}
+
+- (void)getHomeDetailDone :(ASIHTTPRequest *)request {
+    NSDictionary *data =[[Common operaterStr:[request responseString]] JSONValue];
+    [getHomeDetailDelegate gethomeQueryData:[data objectForKey:@"data"]];
+}
+
+- (void)downloadVoiceWithUrl:(NSString *)url {
+    [self checkQueue];
+    NSURL *s_url =[NSURL URLWithString:url];
+    ASIFormDataRequest *request =[ASIFormDataRequest requestWithURL:s_url];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    self.path=[ NSSearchPathForDirectoriesInDomains ( NSDocumentDirectory , NSUserDomainMask , YES ) objectAtIndex : 0 ];
+    _path=[_path stringByAppendingPathComponent : @"1.aac" ];
+    [request setDownloadDestinationPath :_path];
+    request.delegate =self;
+    request.didFinishSelector =@selector(downloadVoiceWithUrlDone:);
+    request.didFailSelector =@selector(commonRequestQueryDataFailed:);
+    request.timeOutSeconds =10.0f;
+    
+    
+    [queue addOperation:request];
+}
+
+- (void)downloadVoiceWithUrlDone: (ASIHTTPRequest *)request {
+    [downloadVoiceDelegate playVoice:_path];
 }
 
 #pragma mark - uploadRequest

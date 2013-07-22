@@ -334,6 +334,7 @@
                 [cell.commit_content_1 setHidden:NO];
                 [cell.commentPlayBtn_1 setHidden:NO];
                 cell.commit_content_1.text =[NSString stringWithFormat:@"%@: ", contentID];
+                cell.btnUrl_1 =[commentDict objectForKey:@"voice_url"];
             }
         }
         if (num >1) {
@@ -351,6 +352,7 @@
                 [cell.commit_content_2 setHidden:NO];
                 [cell.commentPlayBtn_2 setHidden:NO];
                 cell.commit_content_2.text =[NSString stringWithFormat:@"%@: ", contentID];
+                cell.btnUrl_2 =[commentDict objectForKey:@"voice_url"];
             }
         }
         if (num >2){
@@ -368,6 +370,7 @@
                 [cell.commit_content_3 setHidden:NO];
                 [cell.commentPlayBtn_3 setHidden:NO];
                 cell.commit_content_3.text =[NSString stringWithFormat:@"%@: ", contentID];
+                cell.btnUrl_3 =[commentDict objectForKey:@"voice_url"];
             }
             
         }
@@ -488,31 +491,31 @@
     
     _stepBtn_2 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     _stepBtn_2.tag =2;
-    _stepBtn_2.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    _stepBtn_2.frame =CGRectMake(54.0f, 44.0f, 53.0f, 44.0f);
     [_stepBtn_2 setTitle:@"泥木" forState:UIControlStateNormal];
     [_stepBtn_2 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     _stepBtn_3 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     _stepBtn_3.tag =3;
-    _stepBtn_3.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    _stepBtn_3.frame =CGRectMake(107.0f, 44.0f, 53.0f, 44.0f);
     [_stepBtn_3 setTitle:@"油漆" forState:UIControlStateNormal];
     [_stepBtn_3 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     _stepBtn_4 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     _stepBtn_4.tag =4;
-    _stepBtn_4.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    _stepBtn_4.frame =CGRectMake(160.0f, 44.0f, 53.0f, 44.0f);
     [_stepBtn_4 setTitle:@"安装" forState:UIControlStateNormal];
     [_stepBtn_4 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     _stepBtn_5 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     _stepBtn_5.tag =5;
-    _stepBtn_5.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    _stepBtn_5.frame =CGRectMake(213.0f, 44.0f, 53.0f, 44.0f);
     [_stepBtn_5 setTitle:@"竣工" forState:UIControlStateNormal];
     [_stepBtn_5 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     _stepBtn_6 =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     _stepBtn_6.tag =6;
-    _stepBtn_6.frame =CGRectMake(1.0f, 0.0f, 53.0f, 44.0f);
+    _stepBtn_6.frame =CGRectMake(266.0f, 44.0f, 53.0f, 44.0f);
     [_stepBtn_6 setTitle:@"软装" forState:UIControlStateNormal];
     [_stepBtn_6 addTarget:self action:@selector(stepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
