@@ -7,6 +7,7 @@
 //
 
 #import "RKNewCaseViewController.h"
+#import "Common.h"
 
 @interface RKNewCaseViewController ()
 
@@ -268,6 +269,7 @@
 
 #pragma mark - buttonAction
 - (IBAction)provinceBtnPressed:(id)sender {
+    [_toolbar removeFromSuperview];
     [self settingToolBar];
     level =PROVINCE;
     [picker reloadAllComponents];
@@ -275,6 +277,7 @@
 }
 
 - (IBAction)cityBtnPressed:(id)sender {
+    [_toolbar removeFromSuperview];
     [self settingToolBar];
     level =CITY;
     [picker reloadAllComponents];
@@ -282,10 +285,61 @@
 }
 
 - (IBAction)siteBtnPressed:(id)sender {
+    [_toolbar removeFromSuperview];
     [self settingToolBar];
     level =SITE;
     [picker reloadAllComponents];
     [picker setHidden:NO];
+}
+
+- (IBAction)backBtn:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"POPCONTROLLER" object:nil];
+}
+
+- (IBAction)createBtn:(id)sender {
+    [Common cancelAllRequestOfAllQueue];
+    RKNetworkRequestManager *manager =[RKNetworkRequestManager sharedManager];
+    manager.newCaseDelegate =self;
+    [manager newCaseWith:_nameLabel.text :_provinceBtn.titleLabel.text :_cityBtn.titleLabel.text :_siteBtn.titleLabel.text :_styleText.text :styleBtn.titleLabel.text :moneyBtn.titleLabel.text :_addrText.text :_roadText.text :_numberText.text :@"1"];
+}
+//- (void)newCaseWith:(NSString *)name :(NSString *)province :(NSString *)city :(NSString *)region :(NSString *)area :(NSString *)style :(NSString *)budget :(NSString *)community :(NSString *)road :(NSString *)number :(NSString *)touid;
+
+- (IBAction)styleBtn:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"简约", @"中式", @"欧美", @"地中海", @"异域", @"混搭", nil];
+    if(dropDwon == nil) {
+        CGFloat f = 180;
+        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
+        dropDwon.delegate = self;
+    }
+    else {
+        [dropDwon hideDropDown:sender];
+        [self rel];
+    }
+}
+
+- (IBAction)moneyBtn:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"1000", @"2000", @"5000", @"10000", @"20000", @"50000", @"100000", nil];
+    if(dropDwon == nil) {
+        CGFloat f = 100;
+        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
+        dropDwon.delegate = self;
+    }
+    else {
+        [dropDwon hideDropDown:sender];
+        [self rel];
+    }
+}
+
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
+    
+    [self rel];
+}
+
+-(void)rel{
+    [dropDwon release];
+    dropDwon = nil;
 }
 
 @end

@@ -29,6 +29,7 @@
 #define CommitUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/index", SERVER_URL]
 #define RegisterUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiLogin/regist", SERVER_URL]
 #define LoginUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiLogin/login", SERVER_URL]
+#define LoginCheckUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiLogin/verify", SERVER_URL]
 
 #define GetExpoterInfoUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiExpert/index", SERVER_URL]
 #define GetThemeUrlStr [NSString stringWithFormat:@"%@/index.php?s=/ApiTopic/index", SERVER_URL]
@@ -37,4 +38,4 @@
 #define GetCompanyInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiCompany/index", SERVER_URL]
 #define GetActivityInfo [NSString stringWithFormat:@"%@/index.php?s=/ApiActive/activeList", SERVER_URL]
 #define GetManagerList [NSString stringWithFormat:@"%@/index.php?s=/ApiProject/index", SERVER_URL]
-
+#define CreateCase [NSString stringWithFormat:@"%@/index.php?s=/ApiProject/create", SERVER_URL]

@@ -7,6 +7,7 @@
 //
 
 #import "RKLoginViewController.h"
+#import "RKResigterViewController.h"
 #import "Common.h"
 #import "Constents.h"
 
@@ -38,10 +39,25 @@
         [_loginOutBtn setHidden:NO];
         [_pwdText setHidden:YES];
         [_accountText setHidden:YES];
+        [_accountImg setHidden:YES];
+        [_accountImgLine setHidden:YES];
+        [_pwdImg setHidden:YES];
+        [_pwdImgline setHidden:YES];
     } else {
         [_loginOutBtn setHidden:YES];
         [_loginBtn setHidden:NO];
     }
+    
+    if (IS_IPHONE_5) {
+        _bgImage.image =[UIImage imageNamed:@"login_bg_568.png"];
+    } else {
+        _bgImage.image =[UIImage imageNamed:@"login_bg.png"];
+    }
+    
+    [_accountImg setBackgroundColor:[UIColor whiteColor]];
+    [_accountImgLine setBackgroundColor:[UIColor lightGrayColor]];
+    [_pwdImg setBackgroundColor:[UIColor whiteColor]];
+    [_pwdImgline setBackgroundColor:[UIColor lightGrayColor]];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -66,36 +82,47 @@
 
 - (void)alttextFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"%@", textField.text);
+    if (textField.text.length ==0) {
+        if (textField.tag ==1) {
+            _accountText.text =@" 手机号";
+        }else {
+            _pwdText.text =@" 用户密码";
+        }
+    }
+}
+-(void)alttextFieldDidBeginEditing:(UITextField *)textField {
+    if (textField.tag ==1) {
+        _accountText.text =@"";
+    }else {
+        _pwdText.text =@"";
+    }
 }
 
-- (void)alttextViewDidEndEditing:(UITextView *)textView {
-    NSLog(@"%@", textView.text);
-}
 
 #pragma mark - dataDelegate
 
 -(void)checkQueryData {
-    _accountText.text =@"";
-    _pwdText.text =@"";
+    _accountText.text =@" 手机号";
+    _pwdText.text =@" 用户密码";
     [_loginBtn setHidden:YES];
     [_loginOutBtn setHidden:NO];
+    [_loginBtn setHidden:YES];
+    [_loginOutBtn setHidden:NO];
+    [_pwdText setHidden:YES];
+    [_accountText setHidden:YES];
+    [_accountImg setHidden:YES];
+    [_accountImgLine setHidden:YES];
+    [_pwdImg setHidden:YES];
+    [_pwdImgline setHidden:YES];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:LOGIN_STATUS];
 }
 
 - (void)checkQueryDataFailed {
-    _accountText.text =@"";
-    _pwdText.text =@"";
+    _accountText.text =@" 手机号";
+    _pwdText.text =@" 用户密码";
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"账号或密码错误！" message:@"请重新填入账号或密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
     [alert release];
-}
-
-- (void)resigterQueryData {
-    _accountText.text =@"";
-    _pwdText.text =@"";
-    [_loginBtn setHidden:YES];
-    [_loginOutBtn setHidden:NO];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:LOGIN_STATUS];
 }
 
 - (void)dealloc {
@@ -104,6 +131,13 @@
     [_loginBtn release];
     [_backBtn release];
     [_loginOutBtn release];
+    [_bgImage release];
+    [_accountLabel release];
+    [_pwdLabel release];
+    [_pwdImg release];
+    [_accountImg release];
+    [_pwdImgline release];
+    [_accountImgLine release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -112,27 +146,42 @@
     [self setLoginBtn:nil];
     [self setBackBtn:nil];
     [self setLoginOutBtn:nil];
+    [self setBgImage:nil];
+    [self setAccountLabel:nil];
+    [self setPwdLabel:nil];
+    [self setPwdImg:nil];
+    [self setAccountImg:nil];
+    [self setPwdImgline:nil];
+    [self setAccountImgLine:nil];
     [super viewDidUnload];
 }
 
 #pragma mark - buttonAction
 - (IBAction)loginBtnPressed:(id)sender {
-    if (_accountText.text.length !=0 && _pwdText.text.length !=0) {
+    if (_accountText.text.length ==0 || _pwdText.text.length ==0 ||[_accountText.text isEqualToString:@" 手机号"] ||[_pwdText.text isEqualToString:@" 用户密码"]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"账号或密码为空！" message:@"请填入账号或密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }else {
         NSString *account =_accountText.text;
         NSString *password =_pwdText.text;
         
         [[RKNetworkRequestManager sharedManager] loginIn:account :password];
         [RKNetworkRequestManager sharedManager].checkDelegate =self;
-    }else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"账号或密码为空！" message:@"请填入账号或密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+        
     }
 }
 
 - (IBAction)loginOutBtnPressed:(id)sender {
     [_loginBtn setHidden:NO];
     [_loginOutBtn setHidden:YES];
+    [_accountImg setHidden:NO];
+    [_accountImgLine setHidden:NO];
+    [_pwdImg setHidden:NO];
+    [_pwdImgline setHidden:NO];
+    [_accountText setHidden:NO];
+    [_pwdText setHidden:NO];
+    
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:LOGIN_STATUS];
 }
 
@@ -141,18 +190,9 @@
 }
 
 - (IBAction)resigterBtn:(id)sender {
-    if (_accountText.text.length !=0 && _pwdText.text.length !=0) {
-        NSString *account =_accountText.text;
-        NSString *password =_pwdText.text;
-        
-        [[RKNetworkRequestManager sharedManager] registerID:account :password];
-        [RKNetworkRequestManager sharedManager].registerDelegate =self;
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"账号或密码为空！" message:@"请填入账号或密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }
-    
+    RKResigterViewController *rvCtr =[[RKResigterViewController alloc]init];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PUSHCONTROLLER" object:rvCtr];
+    [rvCtr release];
 }
 
 @end

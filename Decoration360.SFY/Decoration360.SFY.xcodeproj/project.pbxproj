@@ -25,7 +25,6 @@
 		6920AB18178A676100D805E4 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AB07178A676100D805E4 /* UIImage+GIF.m */; };
 		6920AB19178A676100D805E4 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AB09178A676100D805E4 /* UIImage+MultiFormat.m */; };
 		6920AB1A178A676100D805E4 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AB0B178A676100D805E4 /* UIImage+WebP.m */; };
-		6920AB1B178A676100D805E4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AB0D178A676100D805E4 /* UIImageView+WebCache.m */; };
 		6920AB8B178C18E700D805E4 /* home_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920AB89178C18E700D805E4 /* home_bg@2x.png */; };
 		6920AB8C178C18E700D805E4 /* home_bg_568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920AB8A178C18E700D805E4 /* home_bg_568@2x.png */; };
 		6920AB93178C1A7500D805E4 /* home_companyInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920AB8D178C1A7500D805E4 /* home_companyInfo@2x.png */; };
@@ -57,6 +56,7 @@
 		69356CE9178FB61500808097 /* RKNewCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69356CE7178FB61500808097 /* RKNewCaseViewController.m */; };
 		69356CEA178FB61500808097 /* RKNewCaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69356CE8178FB61500808097 /* RKNewCaseViewController.xib */; };
 		69356CEC178FDFCD00808097 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69356CEB178FDFCD00808097 /* area.plist */; };
+		69452CB217B79884000B6674 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AB0D178A676100D805E4 /* UIImageView+WebCache.m */; };
 		69469462176DC5CE00DEDB92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469461176DC5CE00DEDB92 /* UIKit.framework */; };
 		69469464176DC5CE00DEDB92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469463176DC5CE00DEDB92 /* Foundation.framework */; };
 		69469466176DC5CE00DEDB92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469465176DC5CE00DEDB92 /* CoreGraphics.framework */; };
@@ -113,6 +113,24 @@
 		698178A617702F6800D5EAD3 /* RKtakingVoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698178A417702F6800D5EAD3 /* RKtakingVoiceViewController.xib */; };
 		698261E91770637C00652C45 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 698261E81770637C00652C45 /* UIImage+Scale.m */; };
 		69AA598C176EA4E600AD0F5F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AA598B176EA4E600AD0F5F /* Common.m */; };
+		69B0E4D417A10288007F4DAE /* login_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4D217A10288007F4DAE /* login_bg@2x.png */; };
+		69B0E4D517A10288007F4DAE /* login_bg_568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4D317A10288007F4DAE /* login_bg_568@2x.png */; };
+		69B0E4D717A10627007F4DAE /* login_resiger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4D617A10627007F4DAE /* login_resiger@2x.png */; };
+		69B0E4D917A106B6007F4DAE /* login_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4D817A106B6007F4DAE /* login_logo@2x.png */; };
+		69B0E4DC17A1079F007F4DAE /* login_btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4DA17A1079F007F4DAE /* login_btn_selected@2x.png */; };
+		69B0E4DD17A1079F007F4DAE /* login_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4DB17A1079F007F4DAE /* login_btn@2x.png */; };
+		69B0E4DF17A10819007F4DAE /* login_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4DE17A10819007F4DAE /* login_back@2x.png */; };
+		69B0E4E117A10863007F4DAE /* login_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4E017A10862007F4DAE /* login_line@2x.png */; };
+		69B0E4E817A10AAA007F4DAE /* login_qq_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4E217A10AAA007F4DAE /* login_qq_selected@2x.png */; };
+		69B0E4E917A10AAA007F4DAE /* login_qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4E317A10AAA007F4DAE /* login_qq@2x.png */; };
+		69B0E4EA17A10AAA007F4DAE /* login_sina_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4E417A10AAA007F4DAE /* login_sina_selected@2x.png */; };
+		69B0E4EB17A10AAA007F4DAE /* login_sina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4E517A10AAA007F4DAE /* login_sina@2x.png */; };
+		69B0E4EC17A10AAA007F4DAE /* login_weibo_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4E617A10AAA007F4DAE /* login_weibo_selected@2x.png */; };
+		69B0E4ED17A10AAA007F4DAE /* login_weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4E717A10AAA007F4DAE /* login_weibo@2x.png */; };
+		69B0E4F117A115B1007F4DAE /* RKResigterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B0E4EF17A115B1007F4DAE /* RKResigterViewController.m */; };
+		69B0E4F217A115B1007F4DAE /* RKResigterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4F017A115B1007F4DAE /* RKResigterViewController.xib */; };
+		69B0E4F517A12A4A007F4DAE /* login_next_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4F317A12A4A007F4DAE /* login_next_selected@2x.png */; };
+		69B0E4F617A12A4A007F4DAE /* login_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B0E4F417A12A4A007F4DAE /* login_next@2x.png */; };
 		69DA99771771503600C5B208 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DA99761771503600C5B208 /* AudioToolbox.framework */; };
 		69DA99881771529F00C5B208 /* record_animate_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DA997A1771529F00C5B208 /* record_animate_01.png */; };
 		69DA99891771529F00C5B208 /* record_animate_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DA997B1771529F00C5B208 /* record_animate_02.png */; };
@@ -329,6 +347,25 @@
 		698261E81770637C00652C45 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		69AA598A176EA4E600AD0F5F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		69AA598B176EA4E600AD0F5F /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		69B0E4D217A10288007F4DAE /* login_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bg@2x.png"; sourceTree = "<group>"; };
+		69B0E4D317A10288007F4DAE /* login_bg_568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bg_568@2x.png"; sourceTree = "<group>"; };
+		69B0E4D617A10627007F4DAE /* login_resiger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_resiger@2x.png"; sourceTree = "<group>"; };
+		69B0E4D817A106B6007F4DAE /* login_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_logo@2x.png"; sourceTree = "<group>"; };
+		69B0E4DA17A1079F007F4DAE /* login_btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_selected@2x.png"; sourceTree = "<group>"; };
+		69B0E4DB17A1079F007F4DAE /* login_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn@2x.png"; sourceTree = "<group>"; };
+		69B0E4DE17A10819007F4DAE /* login_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_back@2x.png"; sourceTree = "<group>"; };
+		69B0E4E017A10862007F4DAE /* login_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_line@2x.png"; sourceTree = "<group>"; };
+		69B0E4E217A10AAA007F4DAE /* login_qq_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_qq_selected@2x.png"; sourceTree = "<group>"; };
+		69B0E4E317A10AAA007F4DAE /* login_qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_qq@2x.png"; sourceTree = "<group>"; };
+		69B0E4E417A10AAA007F4DAE /* login_sina_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_sina_selected@2x.png"; sourceTree = "<group>"; };
+		69B0E4E517A10AAA007F4DAE /* login_sina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_sina@2x.png"; sourceTree = "<group>"; };
+		69B0E4E617A10AAA007F4DAE /* login_weibo_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_weibo_selected@2x.png"; sourceTree = "<group>"; };
+		69B0E4E717A10AAA007F4DAE /* login_weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_weibo@2x.png"; sourceTree = "<group>"; };
+		69B0E4EE17A115B1007F4DAE /* RKResigterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKResigterViewController.h; sourceTree = "<group>"; };
+		69B0E4EF17A115B1007F4DAE /* RKResigterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKResigterViewController.m; sourceTree = "<group>"; };
+		69B0E4F017A115B1007F4DAE /* RKResigterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKResigterViewController.xib; sourceTree = "<group>"; };
+		69B0E4F317A12A4A007F4DAE /* login_next_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_next_selected@2x.png"; sourceTree = "<group>"; };
+		69B0E4F417A12A4A007F4DAE /* login_next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_next@2x.png"; sourceTree = "<group>"; };
 		69DA99761771503600C5B208 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		69DA997A1771529F00C5B208 /* record_animate_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_01.png; sourceTree = "<group>"; };
 		69DA997B1771529F00C5B208 /* record_animate_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_02.png; sourceTree = "<group>"; };
@@ -659,6 +696,7 @@
 		6946949D176DC86B00DEDB92 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				69B0E4D117A10288007F4DAE /* loginImg */,
 				6920AB88178C18E700D805E4 /* homeImg */,
 				6926BD3A1772C6D1002A9F19 /* icon */,
 				69DA999D17718EF200C5B208 /* blackArrow.png */,
@@ -838,6 +876,29 @@
 			path = SoundsController;
 			sourceTree = "<group>";
 		};
+		69B0E4D117A10288007F4DAE /* loginImg */ = {
+			isa = PBXGroup;
+			children = (
+				69B0E4F317A12A4A007F4DAE /* login_next_selected@2x.png */,
+				69B0E4F417A12A4A007F4DAE /* login_next@2x.png */,
+				69B0E4DE17A10819007F4DAE /* login_back@2x.png */,
+				69B0E4D217A10288007F4DAE /* login_bg@2x.png */,
+				69B0E4D317A10288007F4DAE /* login_bg_568@2x.png */,
+				69B0E4D617A10627007F4DAE /* login_resiger@2x.png */,
+				69B0E4D817A106B6007F4DAE /* login_logo@2x.png */,
+				69B0E4DA17A1079F007F4DAE /* login_btn_selected@2x.png */,
+				69B0E4DB17A1079F007F4DAE /* login_btn@2x.png */,
+				69B0E4E017A10862007F4DAE /* login_line@2x.png */,
+				69B0E4E217A10AAA007F4DAE /* login_qq_selected@2x.png */,
+				69B0E4E317A10AAA007F4DAE /* login_qq@2x.png */,
+				69B0E4E417A10AAA007F4DAE /* login_sina_selected@2x.png */,
+				69B0E4E517A10AAA007F4DAE /* login_sina@2x.png */,
+				69B0E4E617A10AAA007F4DAE /* login_weibo_selected@2x.png */,
+				69B0E4E717A10AAA007F4DAE /* login_weibo@2x.png */,
+			);
+			path = loginImg;
+			sourceTree = "<group>";
+		};
 		69DA99781771529F00C5B208 /* audioImg */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,6 +984,9 @@
 				69DA99C41771ADF000C5B208 /* RKLoginViewController.h */,
 				69DA99C51771ADF000C5B208 /* RKLoginViewController.m */,
 				69DA99C61771ADF000C5B208 /* RKLoginViewController.xib */,
+				69B0E4EE17A115B1007F4DAE /* RKResigterViewController.h */,
+				69B0E4EF17A115B1007F4DAE /* RKResigterViewController.m */,
+				69B0E4F017A115B1007F4DAE /* RKResigterViewController.xib */,
 			);
 			path = LoginController;
 			sourceTree = "<group>";
@@ -1077,6 +1141,23 @@
 				69FDFAA617939D47002BF8DF /* RKManagerListViewCell.xib in Resources */,
 				69E3F2FB1794D5A400C6A346 /* RKDesignerViewCell.xib in Resources */,
 				691D8384179791B300C023AB /* RKCheckingDesignerViewController.xib in Resources */,
+				69B0E4D417A10288007F4DAE /* login_bg@2x.png in Resources */,
+				69B0E4D517A10288007F4DAE /* login_bg_568@2x.png in Resources */,
+				69B0E4D717A10627007F4DAE /* login_resiger@2x.png in Resources */,
+				69B0E4D917A106B6007F4DAE /* login_logo@2x.png in Resources */,
+				69B0E4DC17A1079F007F4DAE /* login_btn_selected@2x.png in Resources */,
+				69B0E4DD17A1079F007F4DAE /* login_btn@2x.png in Resources */,
+				69B0E4DF17A10819007F4DAE /* login_back@2x.png in Resources */,
+				69B0E4E117A10863007F4DAE /* login_line@2x.png in Resources */,
+				69B0E4E817A10AAA007F4DAE /* login_qq_selected@2x.png in Resources */,
+				69B0E4E917A10AAA007F4DAE /* login_qq@2x.png in Resources */,
+				69B0E4EA17A10AAA007F4DAE /* login_sina_selected@2x.png in Resources */,
+				69B0E4EB17A10AAA007F4DAE /* login_sina@2x.png in Resources */,
+				69B0E4EC17A10AAA007F4DAE /* login_weibo_selected@2x.png in Resources */,
+				69B0E4ED17A10AAA007F4DAE /* login_weibo@2x.png in Resources */,
+				69B0E4F217A115B1007F4DAE /* RKResigterViewController.xib in Resources */,
+				69B0E4F517A12A4A007F4DAE /* login_next_selected@2x.png in Resources */,
+				69B0E4F617A12A4A007F4DAE /* login_next@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,6 +1168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69452CB217B79884000B6674 /* UIImageView+WebCache.m in Sources */,
 				6946946E176DC5CE00DEDB92 /* main.m in Sources */,
 				69469472176DC5CE00DEDB92 /* RKAppDelegate.m in Sources */,
 				69469494176DC80C00DEDB92 /* ASIAuthenticationDialog.m in Sources */,
@@ -1146,7 +1228,6 @@
 				6920AB18178A676100D805E4 /* UIImage+GIF.m in Sources */,
 				6920AB19178A676100D805E4 /* UIImage+MultiFormat.m in Sources */,
 				6920AB1A178A676100D805E4 /* UIImage+WebP.m in Sources */,
-				6920AB1B178A676100D805E4 /* UIImageView+WebCache.m in Sources */,
 				69531440178D0FA2006AA306 /* RKCompanyViewController.m in Sources */,
 				690610D4178E60CD002168AB /* RKCaseListViewCell.m in Sources */,
 				69356CDC178F94A400808097 /* RKDesignerViewController.m in Sources */,
@@ -1155,6 +1236,7 @@
 				69FDFAA417939D33002BF8DF /* RKManagerListViewCell.m in Sources */,
 				69E3F2F91794D57F00C6A346 /* RKDesignerViewCell.m in Sources */,
 				691D8383179791B300C023AB /* RKCheckingDesignerViewController.m in Sources */,
+				69B0E4F117A115B1007F4DAE /* RKResigterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

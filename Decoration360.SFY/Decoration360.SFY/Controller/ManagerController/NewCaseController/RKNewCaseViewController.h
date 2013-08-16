@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NIDropDown.h"
 #import "UIKeyboardViewController.h"
 #import "UIImageView+WebCache.h"
-
+#import "RKNetworkRequestManager.h"
 
 typedef NS_ENUM(NSInteger, Level){
     PROVINCE,
@@ -17,8 +18,10 @@ typedef NS_ENUM(NSInteger, Level){
     SITE,
 };
 
-@interface RKNewCaseViewController : UIViewController<UIKeyboardViewControllerDelegate, UIPickerViewDelegate,  UIPickerViewDataSource> {
+@interface RKNewCaseViewController : UIViewController<UIKeyboardViewControllerDelegate, UIPickerViewDelegate,  UIPickerViewDataSource, NIDropDownDelegate, RKRequestManagerNewCaseDelegate> {
     UIKeyboardViewController *keyBoardController;
+    
+    NIDropDown *dropDwon;
     
     UIPickerView *picker;
     UIButton *button;
@@ -31,6 +34,8 @@ typedef NS_ENUM(NSInteger, Level){
     NSString *selectedProvince;
     
     int level;
+    IBOutlet UIButton *styleBtn;
+    IBOutlet UIButton *moneyBtn;
 }
 @property (nonatomic, retain) UIPickerView *picker;
 @property (nonatomic, retain) UIButton *button;
@@ -62,6 +67,10 @@ typedef NS_ENUM(NSInteger, Level){
 - (IBAction)provinceBtnPressed:(id)sender;
 - (IBAction)cityBtnPressed:(id)sender;
 - (IBAction)siteBtnPressed:(id)sender;
+- (IBAction)backBtn:(id)sender;
+- (IBAction)createBtn:(id)sender;
+- (IBAction)styleBtn:(id)sender;
+- (IBAction)moneyBtn:(id)sender;
 
 
 @end

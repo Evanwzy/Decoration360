@@ -194,6 +194,9 @@ static CGFloat viewFrameY = 0;
 #pragma mark - TextField delegate methods
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
 	[self checkBarButton:textField];
+    if ([self.boardDelegate respondsToSelector:@selector(alttextFieldDidBeginEditing:)]) {
+		[self.boardDelegate alttextFieldDidBeginEditing:textField];
+	}
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

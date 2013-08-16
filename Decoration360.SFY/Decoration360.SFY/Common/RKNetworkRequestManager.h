@@ -25,6 +25,7 @@
 @protocol RKRequestManagerThemeInfoDelegate;
 @protocol RKRequestManagerManagerListDelegate;
 @protocol RKRequestManagerHomeDetailDelegate;
+@protocol RKRequestManagerNewCaseDelegate;
 
 @protocol RKRequestManagerDownloadThemePicDelegate;
 @protocol RKRequestManagerDownloadVoiceDelegate;
@@ -51,6 +52,7 @@
     id<RKRequestManagerThemeInfoDelegate> getThemeInformationDelegate;
     id<RKRequestManagerManagerListDelegate> getManagerListDelegate;
     id<RKRequestManagerHomeDetailDelegate> getHomeDetailDelegate;
+    id<RKRequestManagerNewCaseDelegate> newCaseDelegate;
     
     id<RKRequestManagerDownloadThemePicDelegate> downloadThemePicDelegate;
     id<RKRequestManagerDownloadVoiceDelegate>downloadVoiceDelegate;
@@ -75,6 +77,7 @@
 @property (nonatomic,assign) id<RKRequestManagerExperterInfoDelegate> getExperterInfoDelegate;
 @property (nonatomic, assign) id<RKRequestManagerThemeInfoDelegate> getThemeInformationDelegate;
 @property (nonatomic, assign) id<RKRequestManagerHomeDetailDelegate> getHomeDetailDelegate;
+@property (nonatomic, assign) id<RKRequestManagerNewCaseDelegate> newCaseDelegate;
 
 @property (nonatomic, assign) id<RKRequestManagerDownloadThemePicDelegate> downloadThemePicDelegate;
 @property (nonatomic, assign) id<RKRequestManagerDownloadVoiceDelegate>downloadVoiceDelegate;
@@ -105,11 +108,13 @@
 - (void)sharedTheme:(NSString *)imageFile :(NSString *)mp3File :(int)step :(NSString *)tid;
 - (void)answerTheme:(NSString *)textContent :(NSString *)mp3File :(NSString *)tid;
 - (void)loginIn:(NSString *)account :(NSString *)password;
-- (void)registerID:(NSString *)account :(NSString *)password;
+- (void)registerID:(NSString *)account :(NSString *)password :(NSString *)verify;
+- (void)check:(NSString *)phoneNum;
 
 - (void)uploadSounds;
 - (void)uploadImg;
 
+- (void)newCaseWith:(NSString *)name :(NSString *)province :(NSString *)city :(NSString *)region :(NSString *)area :(NSString *)style :(NSString *)budget :(NSString *)community :(NSString *)road :(NSString *)number :(NSString *)touid;
 //getData
 - (void)getHomeData;
 - (void)getHomeDetail;
@@ -218,7 +223,7 @@
 
 @protocol RKRequestManagerManagerListDelegate <NSObject>
 
-- (void)managerListQueryData :(NSArray *)arr;
+- (void)managerListQueryData :(NSDictionary *)dict;
 
 @end
 
@@ -231,5 +236,12 @@
 @protocol RKRequestManagerHomeDetailDelegate <NSObject>
 
 - (void)gethomeQueryData :(NSDictionary *)dict;
+
+@end
+
+@protocol RKRequestManagerNewCaseDelegate <NSObject>
+
+- (void)createSucc;
+- (void)createFailure;
 
 @end

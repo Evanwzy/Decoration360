@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "RKNetworkRequestManager.h"
+#import "UIKeyboardViewController.h"
 
-@interface RKshareThemeViewController : UIViewController <RKRequestManagerExperterInfoDelegate, RKRequestManagerSharedImageDelegate>
+@interface RKshareThemeViewController : UIViewController <RKRequestManagerExperterInfoDelegate, RKRequestManagerSharedImageDelegate, UIKeyboardViewControllerDelegate> {
+    UIKeyboardViewController *keyBoardController;
+}
 
 @property (retain, nonatomic) NSString *imageFile;
 @property (retain ,nonatomic  ) NSString *mp3File;

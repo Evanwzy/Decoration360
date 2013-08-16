@@ -18,7 +18,7 @@
 
 @synthesize queue;
 @synthesize singleQueue;
-@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate, activityDelegate, getManagerListDelegate, downloadVoiceDelegate, getHomeDetailDelegate;
+@synthesize uploadSoundsDelegate, uploadImageDelegate, homeDelegate, commitDelegate, checkDelegate, getThemeInformationDelegate, getExperterInfoDelegate, sharedImageDelegate, downloadThemePicDelegate, registerDelegate , contentDelegate, caseListDelegate, activityDelegate, getManagerListDelegate, downloadVoiceDelegate, getHomeDetailDelegate, newCaseDelegate;
 #pragma - singleton
 
 static RKNetworkRequestManager *_networkRequestManager;
@@ -344,13 +344,28 @@ static RKNetworkRequestManager *_networkRequestManager;
     }
 }
 
-- (void)registerID:(NSString *)account :(NSString *)password {
+- (void)check:(NSString *)phoneNum {
+    [self checkQueue];
+    [Common cancelAllRequestWithQueue:queue];
+    NSURL *url = [NSURL URLWithString:LoginCheckUrlStr];
+    ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:phoneNum forKey:@"telephone"];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    [request setDelegate:self];
+    [request setDidFailSelector:@selector(commonRequestQueryDataFailed:)];
+    request.timeOutSeconds = 10;
+    [queue addOperation:request];
+}
+
+- (void)registerID:(NSString *)account :(NSString *)password :(NSString *)verify {
     [self checkQueue];
     [Common cancelAllRequestWithQueue:queue];
     NSURL *url = [NSURL URLWithString:RegisterUrlStr];
     ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request addPostValue:account forKey:@"account"];
     [request addPostValue:password forKey:@"password"];
+    [request addPostValue:verify forKey:@"verify"];
     [request addPostValue:APP_ID forKey:@"company"];
     [request addPostValue:[Common getKey] forKey:SN_KEY];
     [request setDelegate:self];
@@ -371,10 +386,9 @@ static RKNetworkRequestManager *_networkRequestManager;
             [[NSUserDefaults standardUserDefaults] setValue:[[data valueForKey:@"data"] valueForKey:@"SN_KEY"] forKey:@"SN_KEY"];
             [[NSUserDefaults standardUserDefaults] setValue:[[data valueForKey:@"data"] valueForKey:@"nickname"] forKey:@"nickname"];
             [[NSUserDefaults standardUserDefaults] setValue:[[data valueForKey:@"data"] valueForKey:@"avatar"] forKey:@"avatar"];
-            [checkDelegate checkQueryData];
+            [registerDelegate resigterQueryData];
         }if ([[data valueForKey:@"status"] isEqualToString:@"1001"]) {
             NSLog(@"%@", [data valueForKey:@"msg"]);
-            [checkDelegate checkQueryDataFailed];
         }
     }
     @catch (NSException *exception) {
@@ -464,7 +478,7 @@ static RKNetworkRequestManager *_networkRequestManager;
 //    NSLog(@"%@", data);
     if ([[data objectForKey:@"status"] intValue] ==0) {
         NSLog(@"%@", [data objectForKey:@"msg"]);
-        [getManagerListDelegate managerListQueryData:[data objectForKey:@"data"]];
+        [getManagerListDelegate managerListQueryData:data];
     }
 }
 
@@ -509,6 +523,39 @@ static RKNetworkRequestManager *_networkRequestManager;
 }
 
 #pragma mark - uploadRequest
+
+//create new case
+- (void)newCaseWith:(NSString *)name :(NSString *)province :(NSString *)city :(NSString *)region :(NSString *)area :(NSString *)style :(NSString *)budget :(NSString *)community :(NSString *)road :(NSString *)number :(NSString *)touid {
+    [self checkQueue];
+    NSURL *url =[NSURL URLWithString:CreateCase];
+    ASIFormDataRequest *request =[ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:APP_ID forKey:@"company"];
+    [request addPostValue:[Common getKey] forKey:SN_KEY];
+    [request addPostValue:name forKey:@"name"];
+    [request addPostValue:province forKey:@"province"];
+    [request addPostValue:city forKey:@"city"];
+    [request addPostValue:region forKey:@"region"];
+    [request addPostValue:area forKey:@"area"];
+    [request addPostValue:style forKey:@"style"];
+    [request addPostValue:budget forKey:@"budget"];
+    [request addPostValue:community forKey:@"community"];
+    [request addPostValue:road forKey:@"road"];
+    [request addPostValue:number forKey:@"number"];
+    [request addPostValue:touid forKey:@"touid"];
+    
+    request.delegate =self;
+    request.didFinishSelector =@selector(newCaseDone:);
+    request.didFailSelector =@selector(commonRequestQueryDataFailed:);
+    request.timeOutSeconds =10.0f;
+    
+    
+    [queue addOperation:request];
+}
+
+- (void)newCaseDone:(ASIHTTPRequest *)request {
+    NSDictionary *data =[[Common operaterStr:[request responseString]] JSONValue];
+    NSLog(@"%@", [data objectForKey:@"msg"]);
+}
 
 //sharedTheme
 - (void)sharedTheme:(NSString *)imageFile :(NSString *)mp3File {

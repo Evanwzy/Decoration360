@@ -63,8 +63,9 @@
 
 
 
--(void)managerListQueryData:(NSArray *)arr {
-    self.dataArray =arr;
+-(void)managerListQueryData:(NSDictionary *)dict {
+    _num =[[dict objectForKey:@"num"] intValue];
+    self.dataArray =[dict objectForKey:@"data"];
     [self setupTableView];
 }
 - (void)dealloc {
@@ -96,7 +97,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_dataArray count];
+    return _num;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

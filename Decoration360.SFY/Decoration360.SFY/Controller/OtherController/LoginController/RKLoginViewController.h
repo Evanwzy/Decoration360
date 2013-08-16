@@ -10,10 +10,19 @@
 #import "UIKeyboardViewController.h"
 #import "RKNetworkRequestManager.h"
 
-@interface RKLoginViewController : UIViewController <UIKeyboardViewControllerDelegate, RKRequestManagerCheckDelegate, RKRequestManagerRegisterDelegate> {
+@interface RKLoginViewController : UIViewController <UIKeyboardViewControllerDelegate, RKRequestManagerCheckDelegate, UITextFieldDelegate> {
     UIKeyboardViewController *keyBoardController;
 }
 
+@property (retain, nonatomic) IBOutlet UILabel *accountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *pwdLabel;
+
+@property (retain, nonatomic) IBOutlet UIImageView *bgImage;
+@property (retain, nonatomic) IBOutlet UIImageView *pwdImgline;
+@property (retain, nonatomic) IBOutlet UIImageView *accountImgLine;
+
+@property (retain, nonatomic) IBOutlet UIImageView *pwdImg;
+@property (retain, nonatomic) IBOutlet UIImageView *accountImg;
 @property (retain, nonatomic) IBOutlet UIButton *loginBtn;
 @property (retain, nonatomic) IBOutlet UIButton *backBtn;
 @property (retain, nonatomic) IBOutlet UIButton *loginOutBtn;

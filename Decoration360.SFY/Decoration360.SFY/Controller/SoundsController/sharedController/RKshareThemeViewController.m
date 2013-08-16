@@ -295,4 +295,16 @@
         
     }
 }
+
+#pragma mark - UIKeyboardViewController delegate methods
+
+- (void)alttextFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"%@", textField.text);
+}
+
+- (void)alttextViewDidEndEditing:(UITextView *)textView {
+    NSLog(@"%@", textView.text);
+}
+
+
 @end

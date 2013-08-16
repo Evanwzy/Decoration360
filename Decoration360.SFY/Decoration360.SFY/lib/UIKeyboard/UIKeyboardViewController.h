@@ -40,5 +40,7 @@
 
 - (void)alttextFieldDidEndEditing:(UITextField *)textField;
 - (void)alttextViewDidEndEditing:(UITextView *)textView;
+- (void)alttextFieldDidBeginEditing:(UITextField *)textField;
+- (void)alttextViewDidBeginEditing:(UITextView *)textView;
 
 @end

@@ -250,7 +250,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 //        [self.navigationController pushViewController:mlvCtr animated:YES];
         [mlvCtr release];
     }else {
-        UIAlertView *alert = [[[UIAlertView alloc]initWithTitle:@"请先登陆！" message:@"先登录才能发布主题" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] autorelease];
+        UIAlertView *alert = [[[UIAlertView alloc]initWithTitle:@"请先登陆！" message:@"登陆后才能查看项目" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] autorelease];
         alert.delegate =self;
         [alert show];
     }
