@@ -57,6 +57,7 @@
 		69356CEA178FB61500808097 /* RKNewCaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69356CE8178FB61500808097 /* RKNewCaseViewController.xib */; };
 		69356CEC178FDFCD00808097 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69356CEB178FDFCD00808097 /* area.plist */; };
 		69452CB217B79884000B6674 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920AB0D178A676100D805E4 /* UIImageView+WebCache.m */; };
+		6945306617BDC0B6000B6674 /* photoTalk_bg_568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6945306517BDC0B6000B6674 /* photoTalk_bg_568@2x.png */; };
 		69469462176DC5CE00DEDB92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469461176DC5CE00DEDB92 /* UIKit.framework */; };
 		69469464176DC5CE00DEDB92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469463176DC5CE00DEDB92 /* Foundation.framework */; };
 		69469466176DC5CE00DEDB92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69469465176DC5CE00DEDB92 /* CoreGraphics.framework */; };
@@ -250,6 +251,7 @@
 		69356CE7178FB61500808097 /* RKNewCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKNewCaseViewController.m; sourceTree = "<group>"; };
 		69356CE8178FB61500808097 /* RKNewCaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKNewCaseViewController.xib; sourceTree = "<group>"; };
 		69356CEB178FDFCD00808097 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		6945306517BDC0B6000B6674 /* photoTalk_bg_568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoTalk_bg_568@2x.png"; sourceTree = "<group>"; };
 		6946945E176DC5CE00DEDB92 /* Decoration360.SFY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Decoration360.SFY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69469461176DC5CE00DEDB92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69469463176DC5CE00DEDB92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -571,6 +573,14 @@
 			path = NewCaseController;
 			sourceTree = "<group>";
 		};
+		6945306417BDC0B5000B6674 /* photoTalkImg */ = {
+			isa = PBXGroup;
+			children = (
+				6945306517BDC0B6000B6674 /* photoTalk_bg_568@2x.png */,
+			);
+			path = photoTalkImg;
+			sourceTree = "<group>";
+		};
 		69469455176DC5CE00DEDB92 = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +708,7 @@
 			children = (
 				69B0E4D117A10288007F4DAE /* loginImg */,
 				6920AB88178C18E700D805E4 /* homeImg */,
+				6945306417BDC0B5000B6674 /* photoTalkImg */,
 				6926BD3A1772C6D1002A9F19 /* icon */,
 				69DA999D17718EF200C5B208 /* blackArrow.png */,
 				69DA999E17718EF300C5B208 /* blackArrow@2x.png */,
@@ -1158,6 +1169,7 @@
 				69B0E4F217A115B1007F4DAE /* RKResigterViewController.xib in Resources */,
 				69B0E4F517A12A4A007F4DAE /* login_next_selected@2x.png in Resources */,
 				69B0E4F617A12A4A007F4DAE /* login_next@2x.png in Resources */,
+				6945306617BDC0B6000B6674 /* photoTalk_bg_568@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
