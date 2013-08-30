@@ -307,39 +307,74 @@
 - (IBAction)styleBtn:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"简约", @"中式", @"欧美", @"地中海", @"异域", @"混搭", nil];
-    if(dropDwon == nil) {
-        CGFloat f = 180;
-        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
-        dropDwon.delegate = self;
+    if(dropDown == nil) {
+        styleBtn.selected =YES;
+        CGFloat f = 120;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr];
+        dropDown.delegate = self;
     }
     else {
-        [dropDwon hideDropDown:sender];
-        [self rel];
+        [dropDown hideDropDown:sender];
+        [self relBtn:sender];
+    }
+    
+    if(dropDown2 != nil) {
+        [dropDown2 hideDropDown:moneyBtn];
+        [self relBtn:moneyBtn];
     }
 }
 
 - (IBAction)moneyBtn:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"1000", @"2000", @"5000", @"10000", @"20000", @"50000", @"100000", nil];
-    if(dropDwon == nil) {
-        CGFloat f = 100;
-        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
-        dropDwon.delegate = self;
+    if(dropDown2 == nil) {
+        moneyBtn.selected =YES;
+        CGFloat f = 120;
+        dropDown2 = [[NIDropDown alloc]showDropDown:sender :&f :arr];
+        dropDown2.delegate = self;
     }
     else {
-        [dropDwon hideDropDown:sender];
-        [self rel];
+        [dropDown2 hideDropDown:sender];
+        [self relBtn:sender];
+    }
+    
+    if(dropDown != nil) {
+        [dropDown hideDropDown:styleBtn];
+        [self relBtn:styleBtn];
     }
 }
 
-- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
+#pragma mark - NIDrop Button Delegate
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender :(NSString *)text :(int)indexPath{
     
-    [self rel];
+    if([sender isEqual:dropDown]) {
+        [styleBtn setTitle:text forState:UIControlStateNormal];
+        [self rel:sender];
+    }else if([sender isEqual:dropDown2]) {
+        [moneyBtn setTitle:text forState:UIControlStateNormal];
+        [self rel:sender];
+    }
 }
 
--(void)rel{
-    [dropDwon release];
-    dropDwon = nil;
+-(void)rel :(NIDropDown *)sender{
+    if([sender isEqual:dropDown]) {
+        moneyBtn.selected =NO;
+        dropDown = nil;
+    }else if([sender isEqual:dropDown2]) {
+        styleBtn.selected =NO;
+        dropDown2 = nil;
+    }
+    
 }
 
+-(void)relBtn :(id)sender{
+    if([sender isEqual:styleBtn]) {
+        moneyBtn.selected =NO;
+        dropDown = nil;
+    }else if([sender isEqual:moneyBtn]) {
+        styleBtn.selected =NO;
+        dropDown2 = nil;
+    }
+    
+}
 @end

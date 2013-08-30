@@ -197,13 +197,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 
 #pragma mark - UI
 - (void)setUI {
-    
-    [_takingBtn setImage:[UIImage imageNamed:@"icon_takingphoto.png"] forState:UIControlStateNormal];
-    [_otherBtn setImage:[UIImage imageNamed:@"icon_more.png"] forState:UIControlStateNormal];
-    [_companyBtn setImage:[UIImage imageNamed:@"home_companyInfo.png"] forState:UIControlStateNormal];
-    [_activityBtn setImage:[UIImage imageNamed:@"icon_activity.png"] forState:UIControlStateNormal];
-    [_projectManagerBtn setImage:[UIImage imageNamed:@"icon_manager.png"] forState:UIControlStateNormal];
-    
     if (! IS_IPHONE_5) {
         self.bgImageView.image =[UIImage imageNamed:@"home_bg.png"];
         _logoImageView.frame =CGRectMake(20, 170, 88, 60);

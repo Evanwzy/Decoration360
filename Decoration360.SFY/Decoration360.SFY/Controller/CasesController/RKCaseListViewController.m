@@ -56,52 +56,84 @@
     [super viewDidUnload];
 }
 
-#pragma mark - NIbtn&delegate
+#pragma mark - NIDrop Button Delegate
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender :(NSString *)text :(int)indexPath{
+    
+    if([sender isEqual:dropDown]) {
+        [self.btnStyle setTitle:text forState:UIControlStateNormal];
+        [self rel:sender];
+    }else if([sender isEqual:dropDown2]) {
+        [self.btnSite setTitle:text forState:UIControlStateNormal];
+        [self rel:sender];
+    }
+    [self requestDataQuery];
+}
+
+-(void)rel :(NIDropDown *)sender{
+    if([sender isEqual:dropDown]) {
+        self.btnSite.selected =NO;
+        dropDown = nil;
+    }else if([sender isEqual:dropDown2]) {
+        self.btnStyle.selected =NO;
+        dropDown2 = nil;
+    }
+    
+}
+
+-(void)relBtn :(id)sender{
+    if([sender isEqual:self.btnStyle]) {
+        self.btnSite.selected =NO;
+        dropDown = nil;
+    }else if([sender isEqual:self.btnSite]) {
+        self.btnSite.selected =NO;
+        dropDown2 = nil;
+    }
+    
+}
+
+
 - (IBAction)btnStyleClicked:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"全部风格", @"简约", @"中式", @"欧美", @"地中海", @"异域", @"混搭", nil];
-    if(dropDwon == nil) {
-        CGFloat f = 200;
-        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
-        dropDwon.delegate = self;
+    if(dropDown == nil) {
+        self.btnStyle.selected =YES;
+        CGFloat f = 120;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr];
+        dropDown.delegate = self;
     }
     else {
-        [dropDwon hideDropDown:sender];
-        [self rel];
+        [dropDown hideDropDown:sender];
+        [self relBtn:sender];
+    }
+    
+    if(dropDown2 != nil) {
+        [dropDown2 hideDropDown:self.btnSite];
+        [self relBtn:self.btnSite];
     }
 }
 
 - (IBAction)btnSiteClicked:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"全部功能", @"厨房", @"卫浴", @"客厅", @"卧室", @"餐厅", @"儿童房", @"书房", @"整体衣帽间", @"玄关", @"阳台阳光房", @"楼梯", @"储藏室", @"其他空间", @"户外庭院", nil];
-    if(dropDwon == nil) {
-        CGFloat f = 200;
-        dropDwon = [[NIDropDown alloc]showDropDown:sender :&f :arr];
-        dropDwon.delegate = self;
+    if(dropDown2 == nil) {
+        self.btnSite.selected =YES;
+        CGFloat f = 120;
+        dropDown2 = [[NIDropDown alloc]showDropDown:sender :&f :arr];
+        dropDown2.delegate = self;
     }
     else {
-        [dropDwon hideDropDown:sender];
-        [self rel];
+        [dropDown2 hideDropDown:sender];
+        [self relBtn:sender];
+    }
+    
+    if(dropDown != nil) {
+        [dropDown hideDropDown:self.btnStyle];
+        [self relBtn:self.btnStyle];
     }
 }
 
 - (IBAction)backPressed:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"POPCONTROLLER" object:nil];
-}
-
-- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
-//    NSLog(@"%@", _btnStyle.titleLabel.text);
-//    NSLog(@"%@", _btnSite.titleLabel.text);
-    
-    [Common cancelAllRequestOfAllQueue];
-    [self requestDataQuery];
-    
-    [self rel];
-}
-
--(void)rel{
-    [dropDwon release];
-    dropDwon = nil;
 }
 
 #pragma mark - requestData&delegate

@@ -13,7 +13,9 @@
 @interface RKCaseListViewController : UIViewController <NIDropDownDelegate, RKRequestManagerCaseListDelegate,UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UIButton *btnStyle;
     IBOutlet UIButton *btnSite;
-    NIDropDown *dropDwon;
+
+    NIDropDown *dropDown;
+    NIDropDown *dropDown2;
 }
 
 @property (retain, nonatomic) UITableView *tableView;

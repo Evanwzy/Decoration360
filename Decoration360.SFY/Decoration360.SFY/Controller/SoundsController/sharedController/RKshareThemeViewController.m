@@ -56,6 +56,9 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    keyBoardController=[[UIKeyboardViewController alloc] initWithControllerDelegate:self];
+    [keyBoardController addToolbarToKeyboard];
+    
     [self setupUI];
     
     [_takePicBtn setImage:[UIImage imageWithContentsOfFile:[Common pathForImage:[_imageFile stringByAppendingFormat:@".png"]]] forState:UIControlStateNormal];
@@ -67,14 +70,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)setBtnAction {
+#pragma mark - UIKeyboardViewController delegate methods
+- (void)alttextFieldDidEndEditing:(UITextField *)textField {
     
 }
 
+-(void)alttextFieldDidBeginEditing:(UITextField *)textField {
 
+}
 
-
+#pragma mark - 
 - (IBAction)sharedBtnPressed:(id)sender {
     RKNetworkRequestManager *manager=[RKNetworkRequestManager sharedManager];
     
@@ -294,16 +299,6 @@
     @finally {
         
     }
-}
-
-#pragma mark - UIKeyboardViewController delegate methods
-
-- (void)alttextFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"%@", textField.text);
-}
-
-- (void)alttextViewDidEndEditing:(UITextView *)textView {
-    NSLog(@"%@", textView.text);
 }
 
 

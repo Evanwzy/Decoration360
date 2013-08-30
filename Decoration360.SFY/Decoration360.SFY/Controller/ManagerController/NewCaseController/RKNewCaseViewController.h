@@ -21,7 +21,8 @@ typedef NS_ENUM(NSInteger, Level){
 @interface RKNewCaseViewController : UIViewController<UIKeyboardViewControllerDelegate, UIPickerViewDelegate,  UIPickerViewDataSource, NIDropDownDelegate, RKRequestManagerNewCaseDelegate> {
     UIKeyboardViewController *keyBoardController;
     
-    NIDropDown *dropDwon;
+    NIDropDown *dropDown;
+    NIDropDown *dropDown2;
     
     UIPickerView *picker;
     UIButton *button;
